@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <title>Operaciones Crud | Mantener Productos</title>
+  <link rel="stylesheet" th:href="menu-component.css">
+</head>
+
+<body>
+  <div class="layout">
+    <nav>
+      <div class="container-nav">
+        <div>
+          <a class="H1-title">
+            <h1>Admin Page</h1>
+          </a>
+          <ul>
+            <li>
+              <a routerLink="/dashProducto"><span class="material-symbols-outlined">monitoring</span>Dashboard</a>
+            </li>
+            <li class="acordeon">
+              <input type="checkbox" id="listar-abierto">
+              <div class="acordeon-header">
+                <span class="material-symbols-outlined">menu</span>
+                <label for="listar-abierto" class="acordeon-header-label">
+                  Entidades <span class="material-symbols-outlined">chevron_right</span>
+                </label>
+              </div>
+              <div class="acordeon-content">
+                <a routerLink="/productos"><span class="material-symbols-outlined">
+                    chevron_right
+                  </span>Productos
+                </a>
+                <a routerLink="/categorias"><span class="material-symbols-outlined">
+                    chevron_right
+                  </span>Categoria</a>
+              </div>
+            </li>
+            <li>
+              <a href="#"><span class="material-symbols-outlined">settings</span>Opciones</a>
+            </li>
+          </ul>
+        </div>
+        <div class="user-logout">
+          <form method="post">
+            <button type="submit">Cerrar Sesión</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <main>
+      <article class="user-info">
+        <div class="menu-icon">
+          <span class="material-symbols-outlined menu">
+            menu
+          </span>
+        </div>
+        <div class="user">
+          <span class="material-symbols-outlined notification-icon">
+            notifications
+          </span>
+          <div class="user-icon">
+            <span class="material-symbols-outlined">
+              account_circle
+            </span>
+          </div>
+          <div class="user-name">
+            <span>Leonardo Jimenez</span>
+            <span>Admin</span>
+          </div>
+        </div>
+      </article>
+      <article class="contenedor-main">
+        <div>
+          <div class="container my-5">
+            <div class="row g-4">
+              <!-- Dashboard 1 -->
+              <div class="col-12 col-md-4">
+                <div class="card shadow p-3 h-100 border-primary">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0 text-primary">Productos</h5>
+                    <i class="bi bi-box-seam fs-3 text-primary"></i>
+                  </div>
+                  <div class="chart-container mb-3" style="height: 200px;">
+                    <canvas baseChart [data]="barChartData" [type]="'bar'" [options]="barChartOptions"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dashboard 2 -->
+              <div class="col-12 col-md-4">
+                <div class="card shadow p-3 h-100 border-success">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0 text-success">Ventas</h5>
+                    <i class="bi bi-currency-dollar fs-3 text-success"></i>
+                  </div>
+                  <div class="chart-container mb-3" style="height: 200px;">
+                    <canvas baseChart [data]="usuariosChar" [type]="'bar'" [options]="barCharUsuario"></canvas>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dashboard 3 -->
+              <div class="col-12 col-md-4">
+                <div class="card shadow p-3 h-100 border-warning">
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="card-title mb-0 text-warning">Stock</h5>
+                    <i class="bi bi-stack fs-3 text-warning"></i>
+                  </div>
+                  <div class="chart-container mb-3" style="height: 200px;">
+                    <canvas baseChart [data]="barChartData" [type]="'bar'" [options]="barChartOptions"></canvas>
+                  </div>
+                  <div class="d-flex justify-content-between">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+  </div>
+</body>
+
+</html>

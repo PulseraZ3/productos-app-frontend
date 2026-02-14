@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>Operaciones Crud | Mantener Productos</title>
+    <link rel="stylesheet" th:href="menu-component.css">
+</head>
+
+<body>
+    <div class="layout">
+        <nav>
+            <div class="container-nav">
+                <div>
+                    <a class="H1-title">
+                        <h1>Admin Page</h1>
+                    </a>
+                    <ul>
+                        <li>
+                            <a routerLink="/dashProducto"><span
+                                    class="material-symbols-outlined">monitoring</span>Dashboard</a>
+                        </li>
+                        <li class="acordeon">
+                            <input type="checkbox" id="listar-abierto">
+                            <div class="acordeon-header">
+                                <span class="material-symbols-outlined">menu</span>
+                                <label for="listar-abierto" class="acordeon-header-label">
+                                    Entidades <span class="material-symbols-outlined">chevron_right</span>
+                                </label>
+                            </div>
+                            <div class="acordeon-content">
+                                <a routerLink="/productos"><span class="material-symbols-outlined">
+                                        chevron_right
+                                    </span>Productos
+                                </a>
+                                <a routerLink="/categorias"><span class="material-symbols-outlined">
+                                        chevron_right
+                                    </span>Categoria</a>
+
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#"><span class="material-symbols-outlined">settings</span>Opciones</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="user-logout">
+                    <form method="post">
+                        <button type="submit">Cerrar Sesión</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <article class="user-info">
+                <div class="menu-icon">
+                    <span class="material-symbols-outlined menu">
+                        menu
+                    </span>
+                </div>
+                <div class="user">
+                    <span class="material-symbols-outlined notification-icon">
+                        notifications
+                    </span>
+                    <div class="user-icon">
+                        <span class="material-symbols-outlined">
+                            account_circle
+                        </span>
+                    </div>
+                    <div class="user-name">
+                        <span>Leonardo Jimenez</span>
+                        <span>Admin</span>
+                    </div>
+                </div>
+            </article>
+            <article class="contenedor-main">
+                <div>
+                    <div class="container mt-5">
+                        <div class="card shadow-lg p-4">
+
+                            <h3 class="text-center mb-4">Listado de Categorías</h3>
+
+                            <div class="d-flex mb-3">
+                                <input type="search" class="form-control" placeholder="Buscar categorías"
+                                    [(ngModel)]="terminoBusqueda" (input)="filtrarCategorias()"
+                                    (keyup.enter)="filtrarCategorias()" />
+                                <button class="btn btn-secondary ms-2" (click)="limpiarBusqueda()">Limpiar</button>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle text-center">
+                                    <thead class="table-light fw-bold">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
+                                            <th>Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let c of categoriasFiltradas">
+                                            <td>{{ c.idcategoria }}</td>
+                                            <td>{{ c.nombre }}</td>
+                                            <td>{{ c.descripcion }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</body>
+
+</html>
