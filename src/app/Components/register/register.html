@@ -6,7 +6,17 @@
 <input [(ngModel)]="form.password" type="password" placeholder="Password">
 <br>
 
-<input [(ngModel)]="form.idRol" type="number" placeholder="Rol">
+<select [(ngModel)]="form.idRol">
+
+  <option value="">Seleccione Rol</option>
+
+  @for (rol of roles; track rol.idRol) {
+    <option [value]="rol.idRol">
+      {{ rol.nombre.replace('ROLE_', '') }}
+    </option>
+  }
+
+</select>
 <br>
 
 <input [(ngModel)]="form.idDistrito" type="number" placeholder="Distrito">
