@@ -1,35 +1,45 @@
-<h2>Registro</h2>
+<div class="register-wrapper">
 
-<input [(ngModel)]="form.username" placeholder="Username">
-<br>
+  <div class="register-card">
 
-<input [(ngModel)]="form.password" type="password" placeholder="Password">
-<br>
+    <h2 class="title">Crear Cuenta</h2>
 
-<select [(ngModel)]="form.idRol">
+    <div class="form-group">
+      <input [(ngModel)]="form.username" placeholder="Username">
+    </div>
 
-  <option [ngValue]="null">Seleccione Rol</option>
+    <div class="form-group">
+      <input [(ngModel)]="form.password" type="password" placeholder="Password">
+    </div>
 
-  @for (rol of roles; track rol.idRol) {
-    <option [ngValue]="rol.idRol">
-      {{ rol.nombre.replace('ROLE_', '') }}
-    </option>
-  }
+    <div class="form-group">
+      <select [(ngModel)]="form.idRol">
+        <option [ngValue]="null">Seleccione Rol</option>
 
-</select>
+        @for (rol of roles; track rol.idRol) {
+          <option [ngValue]="rol.idRol">
+            {{ rol.nombre.replace('ROLE_', '') }}
+          </option>
+        }
+      </select>
+    </div>
 
-<br>
-<select [(ngModel)]="form.idDistrito">
+    <div class="form-group">
+      <select [(ngModel)]="form.idDistrito">
+        <option [ngValue]="null">Seleccione Distrito</option>
 
-  <option [ngValue]="null">Seleccione Distrito</option>
+        @for (dis of distritos; track dis.iddistrito) {
+          <option [ngValue]="dis.iddistrito">
+            {{ dis.nombre }}
+          </option>
+        }
+      </select>
+    </div>
 
-  @for (dis of distritos; track dis.iddistrito) {
-    <option [ngValue]="dis.iddistrito">
-      {{ dis.nombre }}
-    </option>
-  }
+    <button class="btn-register" (click)="register()">
+      Registrar
+    </button>
 
-</select>
-<br>
+  </div>
 
-<button (click)="register()">Registrar</button>
+</div>

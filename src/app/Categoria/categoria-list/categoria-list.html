@@ -1,34 +1,57 @@
-<div>
-    <div class="container mt-5">
-        <div class="card shadow-lg p-4">
+<div class="container mt-5">
+  <div class="card category-card shadow-sm">
 
-            <h3 class="text-center mb-4">Listado de Categorías</h3>
+    <div class="card-body p-4">
 
-            <div class="d-flex mb-3">
-                <input type="search" class="form-control" placeholder="Buscar categorías" [(ngModel)]="terminoBusqueda"
-                    (input)="filtrarCategorias()" (keyup.enter)="filtrarCategorias()" />
-                <button class="btn btn-secondary ms-2" (click)="limpiarBusqueda()">Limpiar</button>
-            </div>
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">Listado de Categorías</h3>
+        <span class="badge bg-primary rounded-pill px-3 py-2">
+          {{ categoriasFiltradas.length }} registros
+        </span>
+      </div>
 
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle text-center">
-                    <thead class="table-light fw-bold">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Descripción</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let c of categoriasFiltradas">
-                            <td>{{ c.idcategoria }}</td>
-                            <td>{{ c.nombre }}</td>
-                            <td>{{ c.descripcion }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+      <!-- Buscador -->
+      <div class="search-box mb-4">
+        <input
+          type="search"
+          class="form-control search-input"
+          placeholder="Buscar categorías..."
+          [(ngModel)]="terminoBusqueda"
+          (input)="filtrarCategorias()"
+          (keyup.enter)="filtrarCategorias()" />
 
-        </div>
+        <button class="btn btn-outline-secondary ms-2"
+                (click)="limpiarBusqueda()">
+          Limpiar
+        </button>
+      </div>
+
+      <!-- Tabla -->
+      <div class="table-responsive">
+        <table class="table align-middle category-table">
+
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let c of categoriasFiltradas">
+              <td>
+                <span class="id-badge">{{ c.idcategoria }}</span>
+              </td>
+              <td class="fw-semibold">{{ c.nombre }}</td>
+              <td class="text-muted">{{ c.descripcion }}</td>
+            </tr>
+          </tbody>
+
+        </table>
+      </div>
+
     </div>
+  </div>
 </div>

@@ -1,18 +1,28 @@
-<h2>Login</h2>
+<div class="login-wrapper">
 
-<input
-  [(ngModel)]="form.username"
-  placeholder="Usuario"
-/>
-<br>
+  <div class="login-card">
 
-<input
-  [(ngModel)]="form.password"
-  type="password"
-  placeholder="Contraseña"
-/>
-<br>
+    <h2 class="login-title">Iniciar Sesión</h2>
 
-<button (click)="login()">
-  Ingresar
-</button>
+    <div class="form-group">
+      <input
+        [(ngModel)]="form.username"
+        placeholder="Usuario"
+      />
+    </div>
+
+    <div class="form-group">
+      <input
+        [(ngModel)]="form.password"
+        type="password"
+        placeholder="Contraseña"
+      />
+    </div>
+
+    <button class="btn-login" (click)="login()">
+      Ingresar
+    </button>
+
+  </div>
+
+</div>
