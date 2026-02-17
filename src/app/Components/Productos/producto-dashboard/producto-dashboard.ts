@@ -4,7 +4,6 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { ProductoService } from '../../../Service/producto.service';
 import { BaseChartDirective } from 'ng2-charts'; // <-- IMPORTAR AQUÍ
 import { ProductoUsuario } from '../../../Models/productoUsuario.model';
-import { RouterLink } from '@angular/router';
 export interface ProductoCategoria {
     categoria: string;
     cantidad: number;
@@ -15,7 +14,7 @@ export interface ProductoCategoria {
     standalone: true,
     templateUrl: './dashboard-component.html',
     styleUrl:'./menu-component.css',
-    imports: [BaseChartDirective,RouterLink]
+    imports: [BaseChartDirective]
 })
 export class DashboardComponent {
     public barChartData: ChartData<'bar'> = {

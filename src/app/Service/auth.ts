@@ -17,6 +17,11 @@ export class AuthService {
   register(data: RegisterRequest): Observable<any> {
     return this.http.post(`${this.API}/register`, data);
   }
+  logout(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('rol');
+    localStorage.removeItem('username');
+  }
   login(data:any){
     return this.http.post(`${this.API}/login`, data);
   }
@@ -25,5 +30,16 @@ export class AuthService {
   }
   getDistritos(): Observable<GenericResponse<Distrito[]>>{
     return this.http.get<GenericResponse<Distrito[]>>("http://localhost:8080/api/v1/distrito")
+  }
+  guardarSesion(usaurio:any){
+    localStorage.setItem('token', usaurio.token);
+    localStorage.setItem('rol', usaurio.rol);
+    localStorage.setItem('username',usaurio.username);
+  }
+  getUsername(): string | null{
+    return localStorage.getItem('username');
+  }
+    getRol(): string | null{
+    return localStorage.getItem('rol');
   }
 }

@@ -6,7 +6,7 @@ import { DashboardComponent } from './Components/Productos/producto-dashboard/pr
 import { MenuComponent } from './Components/Menu/menu-general/menu.component';
 import { RegisterComponent } from './Components/register/register';
 import { MainLayout } from './Layout/main-layout/main-layout';
-
+import { LoginComponent } from './Components/login/login'
 export const routes: Routes = [
   {
     path: '',
@@ -19,6 +19,7 @@ export const routes: Routes = [
       { path: '', component: MenuComponent },
       { path: 'register', component: RegisterComponent }
     ]
-  }
+  },
+  { path: 'login', component: LoginComponent }
 
 ];

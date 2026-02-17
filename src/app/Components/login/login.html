@@ -1,0 +1,18 @@
+<h2>Login</h2>
+
+<input
+  [(ngModel)]="form.username"
+  placeholder="Usuario"
+/>
+<br>
+
+<input
+  [(ngModel)]="form.password"
+  type="password"
+  placeholder="Contraseña"
+/>
+<br>
+
+<button (click)="login()">
+  Ingresar
+</button>
