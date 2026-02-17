@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core'
 import { FormsModule } from '@angular/forms'
 import { AuthService } from '../../Service/auth'
 import { Rol } from '../../Models/rol.model'
+import { Distrito } from '../../Models/distrito.model'
 
 @Component({
   selector: 'app-register',
@@ -13,6 +14,7 @@ export class RegisterComponent {
 
   private authService = inject(AuthService)
   roles: Rol[] = [];
+  distritos: Distrito[] = [];
   form = {
     username: '',
     password: '',
@@ -22,6 +24,7 @@ export class RegisterComponent {
 
   ngOnInit() {
     this.cargarRoles();
+    this.cargarDistritos();
   }
   cargarRoles() {
     this.authService.getRoles().subscribe({
@@ -29,9 +32,19 @@ export class RegisterComponent {
       error: err => console.error(err)
     });
   }
+  cargarDistritos() {
+    this.authService.getDistritos().subscribe({
+      next: (resp) => {
+        this.distritos = resp.response
+      },
+      error: err => console.error(err)
+    });
+  }
+
   register() {
 
     this.authService.register(this.form).subscribe({
+
       next: () => alert("Usuario creado"),
       error: () => alert("Error al registrar")
     })

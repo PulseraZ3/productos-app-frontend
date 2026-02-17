@@ -1,0 +1,105 @@
+<div class="layout">
+
+  <nav>
+    <div class="container-nav">
+
+      <div>
+        <a class="H1-title">
+          <h1>Admin Page</h1>
+        </a>
+
+        <ul>
+
+          <li>
+            <a routerLink="/dashProducto">
+              <span class="material-symbols-outlined">monitoring</span>
+              Dashboard
+            </a>
+          </li>
+
+          <li class="acordeon">
+
+            <input type="checkbox" id="listar-abierto">
+
+            <div class="acordeon-header">
+              <span class="material-symbols-outlined">menu</span>
+
+              <label for="listar-abierto" class="acordeon-header-label">
+                Entidades
+                <span class="material-symbols-outlined">chevron_right</span>
+              </label>
+            </div>
+
+            <div class="acordeon-content">
+
+              <a routerLink="/productos">
+                <span class="material-symbols-outlined">chevron_right</span>
+                Productos
+              </a>
+
+              <a routerLink="/categorias">
+                <span class="material-symbols-outlined">chevron_right</span>
+                Categoría
+              </a>
+
+            </div>
+
+          </li>
+
+          <li>
+            <a>
+              <span class="material-symbols-outlined">settings</span>
+              Opciones
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="user-logout">
+        <button (click)="logout()">Cerrar Sesión</button>
+      </div>
+
+    </div>
+  </nav>
+
+  <main>
+
+    <article class="user-info">
+
+      <div class="menu-icon">
+        <span class="material-symbols-outlined menu">
+          menu
+        </span>
+      </div>
+
+      <div class="user">
+
+        <span class="material-symbols-outlined notification-icon">
+          notifications
+        </span>
+
+        <div class="user-icon">
+          <span class="material-symbols-outlined">
+            account_circle
+          </span>
+        </div>
+
+        <div class="user-name">
+          <span>{{ username }}</span>
+          <span>{{ rol }}</span>
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- AQUÍ SE CAMBIAN LAS PÁGINAS -->
+    <article class="contenedor-main">
+      <router-outlet></router-outlet>
+    </article>
+
+  </main>
+
+</div>
