@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+a.activo {
+    background-color: #d5d5d5;
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    background-color: #eeeeee;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.container-nav {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    padding: 0.5rem;
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.container-nav li a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: "Roboto", sans-serif;
+    padding: 0.5rem;
+    color: inherit;
+    border-radius: 5px;
+}
+
+.container-nav li {
+    padding: 0.5rem 0 0.5rem 0;
+}
+
+nav h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    font-family: "Roboto";
+    margin: 2rem 0 3rem 0;
+}
+
+.acordeon {
+    font-family: "Roboto", sans-serif;
+    padding: 0;
+}
+
+.acordeon input {
+    display: none;
+}
+
+.acordeon label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 0;
+    width: 100%;
+    border-radius: 5px;
+
+}
+
+.acordeon-content {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.acordeon input:checked~.acordeon-content {
+    display: flex;
+}
+
+.material-symbols-outlined {
+    transition: transform 0.3s ease;
+}
+
+.acordeon input:checked+.acordeon-header label .material-symbols-outlined {
+    transform: rotate(90deg);
+}
+
+.acordeon-header .material-symbols-outlined {
+    padding-right: 0.5rem;
+}
+
+.acordeon-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
+.user-logout {
+    width: 100%;
+
+}
+
+.user-logout a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.5rem;
+    font-family: "Roboto", sans-serif;
+
+}
+
+.user-logout a:hover,
+li a:hover,
+.acordeon-header:hover {
+    background-color: #dddbdb;
+
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+nav {
+    position: fixed;
+    height: 100vh;
+    width: 240px;
+    border-right: 1px solid #dee2e6;
+    background-color: #ffffff;
+    width: 25dvh;
+    height: 100vh;
+}
+
+main {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-left: 240px;
+}
+
+@media (min-width: 1024px) {
+    main {
+        margin-left: 190px;
+    }
+}
+
+@media (min-width: 1920px) {
+    main {
+        margin-left: 240px;
+    }
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    border-bottom: 1px solid #dee2e6;
+
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 1rem 1.5rem 1rem 0;
+}
+
+.user-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8rem;
+}
+
+.user-name span:last-child {
+    color: #adadad;
+}
+
+.user-icon {
+    margin-left: 1rem;
+}
+
+.user-icon .material-symbols-outlined {
+    font-size: 2.5rem;
+}
+
+.menu-icon {
+    margin-left: 1.9rem;
+}
+
+.menu {
+    font-size: 1.6rem;
+}
+
+.notification-icon {
+    font-size: 1.4rem;
+}
+
+.contenedor-main {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 1.5rem 0 1.5rem;
+    height: object-fit;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #a7a7a7;
+}
+
+.H1-title {
+    text-decoration: none;
+    color: black;
+}
+
+.H1-title h1 {
+    transition: all 0.5s ease;
+}
+
+.H1-title h1:hover {
+    transform: scale(1.05);
+}

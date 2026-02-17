@@ -1,0 +1,34 @@
+<div>
+    <div class="container mt-5">
+        <div class="card shadow-lg p-4">
+
+            <h3 class="text-center mb-4">Listado de Categorías</h3>
+
+            <div class="d-flex mb-3">
+                <input type="search" class="form-control" placeholder="Buscar categorías" [(ngModel)]="terminoBusqueda"
+                    (input)="filtrarCategorias()" (keyup.enter)="filtrarCategorias()" />
+                <button class="btn btn-secondary ms-2" (click)="limpiarBusqueda()">Limpiar</button>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered align-middle text-center">
+                    <thead class="table-light fw-bold">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let c of categoriasFiltradas">
+                            <td>{{ c.idcategoria }}</td>
+                            <td>{{ c.nombre }}</td>
+                            <td>{{ c.descripcion }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
