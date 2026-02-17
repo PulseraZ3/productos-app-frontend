@@ -88,51 +88,58 @@
                                     Añadir Producto
                                 </button>
                             </div>
-                            <div class="table-responsive">
-                                <table class="table table-bordered align-middle text-center">
-                                    <thead class="table-light fw-bold">
-                                        <tr>
-                                            <th>Nombre</th>
-                                            <th>Descripción</th>
-                                            <th>Precio</th>
-                                            <th>Stock</th>
-                                            <th>Peso</th>
-                                            <th>Fecha Vencimiento</th>
-                                            <th>Estado</th>
-                                            <th>Categoría</th>
-                                            <th>Usuario</th>
-                                            <th>Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let p of productoFiltrados">
-                                            <td>{{ p.nombre }}</td>
-                                            <td>{{ p.descripcion }}</td>
-                                            <td>S/ {{ p.precio }}</td>
-                                            <td [ngClass]="isStockBajo(p.stock) ? 'text-danger fw-bold' : ''">
-                                                {{ p.stock }}
-                                            </td>
-                                            <td>{{ p.peso }}</td>
-                                            <td>{{ p.fvencimiento | date:'dd/MM/yyyy' }}</td>
-                                            <td>
-                                                <span class="fw-bold"
-                                                    [ngClass]="p.estado ? 'text-success' : 'text-danger'">
+                            <div class="row g-4">
+                                <div class="col-12 col-sm-6 col-lg-4" *ngFor="let p of productoFiltrados">
+                                    <div class="card h-100 shadow-sm border-0 product-card">
+
+                                        <div class="card-body d-flex flex-column">
+
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h5 class="card-title fw-bold">{{ p.nombre }}</h5>
+                                                <span class="badge" [ngClass]="p.estado ? 'bg-success' : 'bg-danger'">
                                                     {{ p.estado ? 'Activo' : 'Inactivo' }}
                                                 </span>
-                                            </td>
-                                            <td>{{p.id_usuario}}</td>
-                                            <td>{{ p.idcategoria }}</td>
-                                            <td>
-                                                <button class="btn btn-sm btn-outline-secondary me-1">Editar</button>
-                                                <button class="btn btn-sm btn-outline-danger me-1"
-                                                    (click)="cambiarEstadoProducto(p.idproducto)">Activar</button>
-                                                <button class="btn btn-sm btn-outline-info">Ver</button>
-                                            </td>
-                                        </tr>
+                                            </div>
 
-                                    </tbody>
-                                </table>
+                                            <p class="text-muted small flex-grow-1">
+                                                {{ p.descripcion }}
+                                            </p>
+
+                                            <ul class="list-unstyled small mb-3">
+                                                <li><strong>Precio:</strong> S/ {{ p.precio }}</li>
+                                                <li>
+                                                    <strong>Stock:</strong>
+                                                    <span [ngClass]="isStockBajo(p.stock) ? 'text-danger fw-bold' : ''">
+                                                        {{ p.stock }}
+                                                    </span>
+                                                </li>
+                                                <li><strong>Peso:</strong> {{ p.peso }}</li>
+                                                <li><strong>Vence:</strong> {{ p.fvencimiento | date:'dd/MM/yyyy' }}
+                                                </li>
+                                                <li><strong>Categoría:</strong> {{ p.idcategoria }}</li>
+                                                <li><strong>Usuario:</strong> {{ p.id_usuario }}</li>
+                                            </ul>
+
+                                            <div class="d-flex justify-content-between mt-auto">
+                                                <button class="btn btn-sm btn-outline-secondary">
+                                                    Editar
+                                                </button>
+
+                                                <button class="btn btn-sm btn-outline-warning"
+                                                    (click)="cambiarEstadoProducto(p.idproducto)">
+                                                    Cambiar Estado
+                                                </button>
+
+                                                <button class="btn btn-sm btn-outline-info">
+                                                    Ver
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
 
                         </div>
                     </div>
