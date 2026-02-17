@@ -17,9 +17,9 @@ export const routes: Routes = [
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
       { path: '', component: MenuComponent },
-      { path: 'register', component: RegisterComponent }
     ]
   },
+  { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent }
 
 ];
