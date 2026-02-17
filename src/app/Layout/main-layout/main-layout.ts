@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
-
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, RouterModule],
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css'
 })
 export class MainLayout {
+
+  private router = inject(Router);
 
   username = 'Leonardo Jimenez';
   rol = 'Admin';
