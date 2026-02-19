@@ -1,0 +1,15 @@
+<div class="p-4">
+  <div class="font-semibold mb-4">Productos</div>
+
+  @if (loading()) {
+    <div>Cargando productos...</div>
+  }
+
+  @for (producto of productos(); track producto.idproducto) {
+    <div class="border p-2 rounded mb-2">
+      <h3 class="font-semibold">{{ producto.nombre }}</h3>
+      <p class="text-sm">{{ producto.descripcion }}</p>
+      <p class="font-bold">{{ producto.precio }}</p>
+    </div>
+  }
+</div>

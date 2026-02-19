@@ -8,6 +8,7 @@ import { RegisterComponent } from './Components/register/register';
 import { MainLayout } from './Layout/main-layout/main-layout';
 import { LoginComponent } from './Components/login/login'
 import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
+import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
 export const routes: Routes = [
   {
     path: 'menu',
@@ -26,7 +27,8 @@ export const routes: Routes = [
     path: "catalogo",
     component: CatalogoLayout,
     children:[ 
-      {path:'', component:CategoriaList}
+      {path:'', component:CategoriaList},
+      {path:'categoria/:id', component: ProductosPorCategoriaComponent}
     ]
   }
 ];

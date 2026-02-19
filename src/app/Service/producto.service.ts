@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { Producto } from '../Models/producto.model';
 import { ProductoCategoria } from '../Models/productoCategoria.model';
 import { ProductoUsuario } from '../Models/productoUsuario.model';
+import { GenericResponse } from '../Models/generic-response.model';
 
 interface ProductoResponse {
   response: Producto[];
@@ -12,6 +13,8 @@ interface ProductoResponse {
 @Injectable({ providedIn: 'root' })
 export class ProductoService {
   private apiUrl = 'http://localhost:8080/api/productos';
+  productos = signal<Producto[]>([]);
+  loading = signal(false);
 
   constructor(private http: HttpClient) { }
 
@@ -34,6 +37,22 @@ export class ProductoService {
   cambiarEstado(id: number): Observable<string> {
     return this.http.put<string>(`${this.apiUrl}/cambiarEstado/${id}`, null);
   }
-
-
+  
+  listarPorCategorias(idcategoria: number): Observable<Producto[]>{
+    this.loading.set(true);
+    return this.http.get<GenericResponse<Producto[]>>(`http://localhost:8080/api/productos/categoria/${idcategoria}`)
+      .pipe(
+        tap({
+          next:(data) => {
+            this.productos.set(data.response);
+            this.loading.set(false);
+          },
+          error: () => {
+            this.productos.set([]);
+            this.loading.set(false);
+          }
+        }),
+        map(data => data.response)
+      );
+  }
 }
