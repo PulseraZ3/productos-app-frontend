@@ -26,7 +26,7 @@ export const routes: Routes = [
     path: "catalogo",
     component: CatalogoLayout,
     children:[ 
-      {}
+      {path:'', component:CategoriaList}
     ]
   }
 ];

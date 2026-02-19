@@ -1,7 +1,70 @@
-<nav>
+<nav class="bg-[#cc292e]">
     <div>
-        <div>
-            <h1>Plaza <span class="">V</span>ea</h1>
+        <div class="" name="carrusel anuncios">
+
+        </div>
+        <div class="font-sans py-2 px-4">
+            <div class="flex gap-5 justify-between">
+                <div class="flex gap-3">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt="">
+                    <button class="flex items-center gap-2 
+                   text-white 
+                   rounded-2xl! 
+                   px-3
+                   py-1
+                   hover:bg-[#9d1e23] 
+                   transition-all duration-200 " (click)="toggleMenu()">
+                        <span class="material-symbols-outlined text-2xl">
+                            menu
+                        </span>
+                        <span class="text-base">Menú</span>
+                    </button>
+                </div>
+                <div class="items-center content-center cursor-pointer w-full max-w-xl">
+                    <span class="flex items-center bg-white rounded-2xl! py-1.5  px-2 w-full">
+                        <input type="search" class="pl-2  text-gray-400 w-full focus:outline-0" id=""
+                            placeholder="¿Qué estas buscando?">
+                        <span class="material-symbols-outlined ">
+                            search
+                        </span>
+                    </span>
+                </div>
+                <div class="flex items-center content-center">
+                    <div>
+                        <span>Mi carrito</span>
+                    </div>
+                    <div>
+                        <span>
+                            Mi cuenta
+                        </span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </nav>
+@if (menuOpen()) {
+<div (click)="closeMenu()" class="fixed inset-0 bg-black/40 z-40">
+</div>
+}
+<div class="fixed top-14 left-0 h-[calc(100vh)]
+         w-72 bg-white shadow-xl z-50
+         transform transition-transform duration-300" [class.-translate-x-full]="!menuOpen()">
+
+    <div class="p-4 font-semibold border-b">
+        Categorías
+    </div>
+
+    <div class="p-4 space-y-2">
+        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded">
+            Lácteos
+        </div>
+        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded">
+            Bebidas
+        </div>
+        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded">
+            Tecnología
+        </div>
+    </div>
+</div>
+<link href="https://fonts.googleapis.com" rel="stylesheet">
