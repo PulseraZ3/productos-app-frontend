@@ -1,0 +1,151 @@
+.detalle-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top left, #123d2b, #0b2e21 40%, #061a14 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.detalle-card {
+  width: 100%;
+  max-width: 750px;
+  padding: 35px;
+  border-radius: 22px;
+  background: rgba(10, 40, 30, 0.75);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(0, 255, 170, 0.2);
+  box-shadow:
+    0 0 25px rgba(0, 255, 170, 0.15),
+    0 10px 40px rgba(0, 0, 0, 0.6);
+  color: #e6fff6;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.detalle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.detalle-header h2 {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.descripcion {
+  opacity: 0.85;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.detalle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 22px;
+  margin-bottom: 35px;
+}
+
+.detalle-item {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0, 255, 170, 0.05);
+  border: 1px solid rgba(0, 255, 170, 0.08);
+  transition: 0.3s ease;
+}
+
+.detalle-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(0, 255, 170, 0.2);
+}
+
+.label {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  margin-bottom: 5px;
+}
+
+.value {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.price {
+  color: #00ffaa;
+}
+
+.stock-bajo {
+  color: #ff6b6b;
+}
+
+.stock-ok {
+  color: #00ffaa;
+}
+
+.badge {
+  padding: 6px 16px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.activo {
+  background: #00ffaa;
+  color: #002b1e;
+}
+
+.inactivo {
+  background: #7f1d1d;
+  color: #fff;
+}
+
+.detalle-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-volver,
+.btn-editar {
+  padding: 9px 22px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s ease;
+}
+
+.btn-volver {
+  background: transparent;
+  border: 1px solid #00ffaa;
+  color: #00ffaa;
+}
+
+.btn-volver:hover {
+  background: #00ffaa;
+  color: #002b1e;
+  box-shadow: 0 0 15px rgba(0, 255, 170, 0.4);
+}
+
+.btn-editar {
+  background: linear-gradient(135deg, #00ffaa, #00c896);
+  color: #002b1e;
+}
+
+.btn-editar:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 170, 0.5);
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

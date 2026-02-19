@@ -55,4 +55,7 @@ export class ProductoService {
         map(data => data.response)
       );
   }
+  obtenerPorId(id: number) {
+  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
 }

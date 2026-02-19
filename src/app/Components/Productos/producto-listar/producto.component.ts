@@ -8,12 +8,14 @@ import { UsuarioService } from "../../../Service/usuario.service";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ChartData, ChartOptions } from "chart.js";
+import { RouterModule } from '@angular/router';
 
 @Component({
     selector: "app-producto",
+    standalone: true,
     templateUrl: "./producto-listar.html",
-    styleUrl:"./menu-component.css",
-    imports: [CommonModule, ReactiveFormsModule,FormsModule]
+    styleUrls: ["./menu-component.css"],
+    imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterModule]
 })
 export class ProductoComponentListar implements OnInit {
     producto: Producto[] = [];
