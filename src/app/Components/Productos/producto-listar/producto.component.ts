@@ -7,14 +7,13 @@ import { CategoriaService } from "../../../Service/categoria.service";
 import { UsuarioService } from "../../../Service/usuario.service";
 import { CommonModule, CurrencyPipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterLink } from "@angular/router";
 import { ChartData, ChartOptions } from "chart.js";
 
 @Component({
     selector: "app-producto",
     templateUrl: "./producto-listar.html",
     styleUrl:"./menu-component.css",
-    imports: [CommonModule, ReactiveFormsModule, RouterLink, FormsModule]
+    imports: [CommonModule, ReactiveFormsModule,FormsModule]
 })
 export class ProductoComponentListar implements OnInit {
     producto: Producto[] = [];

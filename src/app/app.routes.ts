@@ -7,9 +7,10 @@ import { MenuComponent } from './Components/Menu/menu-general/menu.component';
 import { RegisterComponent } from './Components/register/register';
 import { MainLayout } from './Layout/main-layout/main-layout';
 import { LoginComponent } from './Components/login/login'
+import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
 export const routes: Routes = [
   {
-    path: '',
+    path: 'menu',
     component: MainLayout,
     children: [
       { path: 'producto/nuevo', component: ProductoComponent },
@@ -20,6 +21,12 @@ export const routes: Routes = [
     ]
   },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
-
+  { path: 'login', component: LoginComponent },
+  {
+    path: "catalogo",
+    component: CatalogoLayout,
+    children:[ 
+      {}
+    ]
+  }
 ];

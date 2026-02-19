@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CategoriaService } from '../../Service/categoria.service';
 import { Categoria } from '../../Models/categoria.model';
 import { CommonModule } from '@angular/common';
@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-categoria-list',
-  imports: [CommonModule, ReactiveFormsModule, FormsModule,RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './categoria-list.html',
   styleUrls: ['./categoria-list.css','./menu-component.css']
 })
