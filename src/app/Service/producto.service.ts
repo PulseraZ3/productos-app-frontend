@@ -37,22 +37,38 @@ export class ProductoService {
   cambiarEstado(id: number): Observable<string> {
     return this.http.put<string>(`${this.apiUrl}/cambiarEstado/${id}`, null);
   }
-  
-  listarPorCategorias(idcategoria: number): Observable<Producto[]>{
+
+  listarPorCategorias(idcategoria: number): Observable<Producto[]> {
     this.loading.set(true);
-    return this.http.get<GenericResponse<Producto[]>>(`http://localhost:8080/api/productos/categoria/${idcategoria}`)
-      .pipe(
-        tap({
-          next:(data) => {
+    return this.http.get<GenericResponse<Producto[]>>(
+      `http://localhost:8080/api/productos/categoria/${idcategoria}`
+    ).pipe(
+      tap({
+        next: (data) => {
+          if (data && data.response) {
             this.productos.set(data.response);
-            this.loading.set(false);
-          },
-          error: () => {
+          } else {
             this.productos.set([]);
-            this.loading.set(false);
           }
-        }),
-        map(data => data.response)
-      );
+          this.loading.set(false);
+        },
+        error: () => {
+          this.productos.set([]);
+          this.loading.set(false);
+        }
+      }),
+      map(data => data?.response ?? []) // si data es null, devolvemos array vacío
+    );
   }
+  listarImagenesProducto(idProducto: number, rutasRelativas: string[]): string[] {
+    // rutasRelativas = ["/uploads/xxxx.png"]
+    return rutasRelativas.map(ruta => {
+      const nombreArchivo = ruta.split('/').pop(); // "xxxx.png"
+      return `http://localhost:8080/imagenes/${idProducto}/imagenes/${nombreArchivo}`;
+    });
+  }
+  listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
+    return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
+  }
+
 }

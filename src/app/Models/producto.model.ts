@@ -9,4 +9,5 @@ export interface Producto {
     estado: boolean;
     idcategoria: number;   // snake_case
     id_usuario: number;    // snake_case
+    imagenes?: string[];
 }

@@ -30,5 +30,6 @@ export const routes: Routes = [
       {path:'', component:CategoriaList},
       {path:'categoria/:id', component: ProductosPorCategoriaComponent}
     ]
-  }
+  },
+  { path: '**', redirectTo: 'catalogo' } // fallback por si ponen algo no válido
 ];

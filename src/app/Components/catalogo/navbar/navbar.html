@@ -6,7 +6,8 @@
         <div class="font-sans py-2 px-4">
             <div class="flex gap-5 justify-between">
                 <div class="flex gap-3">
-                    <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt="" [routerLink]="['/catalogo']" class="cursor-pointer">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt=""
+                        [routerLink]="['/catalogo']" class="cursor-pointer">
                     <button class="flex items-center gap-2 
                    text-white 
                    rounded-2xl! 
@@ -29,11 +30,17 @@
                         </span>
                     </span>
                 </div>
-                <div class="flex items-center content-center">
-                    <div>
+                <div class="flex items-center content-center gap-5 text-white">
+                    <div class="flex items-center ">
+                        <span class="material-symbols-outlined p-2">
+                            shopping_bag
+                        </span>
                         <span>Mi carrito</span>
                     </div>
-                    <div>
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined p-2">
+                            person
+                        </span>
                         <span>
                             Mi cuenta
                         </span>
@@ -49,8 +56,7 @@
 
 <div class="fixed top-14 left-0 h-[calc(100vh)]
          w-72 bg-white shadow-xl z-50
-         transform transition-transform duration-300"
-     [class.-translate-x-full]="!menuOpen()">
+         transform transition-transform duration-300" [class.-translate-x-full]="!menuOpen()">
 
     <div class="p-4 font-semibold border-b">
         Categorías
@@ -59,15 +65,14 @@
     <div class="p-4 space-y-2">
 
         @if (loading()) {
-          <div>Cargando...</div>
+        <div>Cargando...</div>
         }
 
         @for (categoria of categorias(); track categoria.idcategoria) {
-          <div
-            class="cursor-pointer hover:bg-gray-100 p-2 rounded"
+        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded"
             [routerLink]="['/catalogo/categoria', categoria.idcategoria]">
             {{ categoria.nombre }}
-          </div>
+        </div>
         }
     </div>
 </div>

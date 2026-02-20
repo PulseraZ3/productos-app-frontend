@@ -2,14 +2,24 @@
   <div class="font-semibold mb-4">Productos</div>
 
   @if (loading()) {
-    <div>Cargando productos...</div>
+  <div>Cargando productos...</div>
   }
 
   @for (producto of productos(); track producto.idproducto) {
-    <div class="border p-2 rounded mb-2">
-      <h3 class="font-semibold">{{ producto.nombre }}</h3>
-      <p class="text-sm">{{ producto.descripcion }}</p>
-      <p class="font-bold">{{ producto.precio }}</p>
+  <div class="border p-2 rounded mb-2">
+    <h3 class="font-semibold">{{ producto.nombre }}</h3>
+    <p class="text-sm">{{ producto.descripcion }}</p>
+    <p class="font-bold">{{ producto.precio}}</p>
+
+    @if (producto.imagenes && producto.imagenes.length > 0) {
+    <div class="flex gap-2 mt-2">
+      @for (imagen of producto.imagenes; track imagen) {
+      <img [src]="imagen" alt="{{ producto.nombre }}" class="w-20 h-20 object-cover rounded" />
+      }
     </div>
+    } @else {
+    <p class="text-sm text-gray-400 mt-2">Sin imágenes disponibles</p>
+    }
+  </div>
   }
 </div>
