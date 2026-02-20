@@ -1,0 +1,64 @@
+<div class="detalle-wrapper" *ngIf="producto">
+
+  <div class="detalle-card">
+
+    <div class="detalle-header">
+      <h2>{{ producto.nombre }}</h2>
+
+      <span class="badge"
+            [ngClass]="producto.estado ? 'activo' : 'inactivo'">
+        {{ producto.estado ? 'Activo' : 'Inactivo' }}
+      </span>
+    </div>
+
+    <p class="descripcion">
+      {{ producto.descripcion }}
+    </p>
+
+    <div class="detalle-grid">
+
+      <div class="detalle-item">
+        <span class="label">Precio</span>
+        <span class="value price">S/ {{ producto.precio }}</span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="label">Stock</span>
+        <span class="value"
+              [ngClass]="producto.stock <= 5 ? 'stock-bajo' : 'stock-ok'">
+          {{ producto.stock }}
+        </span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="label">Peso</span>
+        <span class="value">{{ producto.peso }}</span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="label">Vencimiento</span>
+        <span class="value">
+          {{ producto.fvencimiento | date:'dd/MM/yyyy' }}
+        </span>
+      </div>
+
+      <div class="detalle-item">
+        <span class="label">Categoría</span>
+        <span class="value">{{ producto.idcategoria }}</span>
+      </div>
+
+    </div>
+
+    <div class="detalle-actions">
+      <button class="btn-volver" routerLink="/productos">
+        ← Volver
+      </button>
+
+      <button class="btn-editar">
+        Editar
+      </button>
+    </div>
+
+  </div>
+
+</div>

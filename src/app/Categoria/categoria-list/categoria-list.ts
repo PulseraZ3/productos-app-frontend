@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-categoria-list',
+  standalone: true, 
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './categoria-list.html',
   styleUrls: ['./categoria-list.css','./menu-component.css']

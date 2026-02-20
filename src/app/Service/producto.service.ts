@@ -60,6 +60,9 @@ export class ProductoService {
       map(data => data?.response ?? []) // si data es null, devolvemos array vacío
     );
   }
+  obtenerPorId(id: number) {
+  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  }
   listarImagenesProducto(idProducto: number, rutasRelativas: string[]): string[] {
     // rutasRelativas = ["/uploads/xxxx.png"]
     return rutasRelativas.map(ruta => {
@@ -70,5 +73,4 @@ export class ProductoService {
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
-
 }
