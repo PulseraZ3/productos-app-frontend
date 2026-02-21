@@ -46,6 +46,7 @@
           </span>
 
         </div>
+<<<<<<< HEAD
       </div>
 
       <!-- Acciones -->
@@ -60,6 +61,58 @@
           </span>
 
           <span>Mi carrito</span>
+=======
+        <div class="font-sans py-2 px-4">
+            <div class="flex gap-5 justify-between">
+                <div class="flex gap-3">
+                    <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt=""
+                        [routerLink]="['/catalogo']" class="cursor-pointer">
+                    <button class="flex items-center gap-2 
+                   text-white 
+                   rounded-2xl! 
+                   px-3
+                   py-1
+                   hover:bg-[#9d1e23] 
+                   transition-all duration-200 " (click)="toggleMenu()">
+                        <span class="material-symbols-outlined text-2xl">
+                            menu
+                        </span>
+                        <span class="text-base">Menú</span>
+                    </button>
+                </div>
+                <div class="items-center content-center cursor-pointer w-full max-w-xl">
+                    <span class="flex items-center bg-white rounded-2xl! py-1.5  px-2 w-full">
+                        <input type="search" class="pl-2  text-gray-400 w-full focus:outline-0" id=""
+                            placeholder="¿Qué estas buscando?">
+                        <span class="material-symbols-outlined ">
+                            search
+                        </span>
+                    </span>
+                </div>
+                <div class="flex items-center content-center gap-5 text-white">
+                    <div class="flex items-center ">
+                        <span class="material-symbols-outlined p-2">
+                            shopping_bag
+                        </span>
+                        <span>Mi carrito</span>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="material-symbols-outlined p-2">
+                            person
+                        </span>
+                        @if(username){
+                        <span [routerLink]="['/perfil']">
+                            {{username}}
+                        </span>
+                        }@else {
+                        <span [routerLink]="['/login']" class="cursor-pointer">
+                            Mi cuenta
+                        </span>
+                        }
+                    </div>
+                </div>
+            </div>
+>>>>>>> fa4edcd2da2dce407c797fc6997d5942c7673c9b
         </div>
 
         <!-- Cuenta -->

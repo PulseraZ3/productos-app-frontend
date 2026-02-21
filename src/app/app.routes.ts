@@ -11,6 +11,7 @@ import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalog
 import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
 import { ProductoDetalleComponent } from './Components/Productos/producto-detalle/producto-detalle.component';
 
+import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -20,6 +21,10 @@ export const routes: Routes = [
       { path: 'productos', component: ProductoComponentListar },
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
+      {
+        path: 'producto/:id/imagenes',
+        component: ProductoImagen
+      },
       { path: '', component: MenuComponent },
     ]
   },
@@ -34,5 +39,5 @@ export const routes: Routes = [
       { path:'producto/:id', component: ProductoDetalleComponent } 
     ]
   },
-  { path: '**', redirectTo: 'catalogo' } 
+  { path: '**', redirectTo: 'catalogo' }
 ];
