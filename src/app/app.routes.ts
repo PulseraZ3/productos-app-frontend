@@ -12,6 +12,7 @@ import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-c
 import { ProductoDetalleComponent } from './Components/Productos/producto-detalle/producto-detalle.component';
 
 import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
+import { Carrito } from './Components/carrito/carrito';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -33,9 +34,10 @@ export const routes: Routes = [
   {
     path: "catalogo",
     component: CatalogoLayout,
-    children:[ 
-      {path:'', component:CategoriaList},
-      {path:'categoria/:id', component: ProductosPorCategoriaComponent},
+    children: [
+      { path: '', component: CategoriaList },
+      { path: 'carrito', component: Carrito },
+      { path: 'categoria/:id', component: ProductosPorCategoriaComponent },
       { path:'producto/:id', component: ProductoDetalleComponent } 
     ]
   },
