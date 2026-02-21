@@ -57,20 +57,17 @@ export class ProductoService {
           this.loading.set(false);
         }
       }),
-      map(data => data?.response ?? []) // si data es null, devolvemos array vacío
+      map(data => data?.response ?? []) 
     );
   }
-  obtenerPorId(id: number) {
-  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
-  }
   listarImagenesProducto(idProducto: number, rutasRelativas: string[]): string[] {
-    // rutasRelativas = ["/uploads/xxxx.png"]
     return rutasRelativas.map(ruta => {
-      const nombreArchivo = ruta.split('/').pop(); // "xxxx.png"
+      const nombreArchivo = ruta.split('/').pop(); 
       return `http://localhost:8080/imagenes/${idProducto}/imagenes/${nombreArchivo}`;
     });
   }
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
+
 }

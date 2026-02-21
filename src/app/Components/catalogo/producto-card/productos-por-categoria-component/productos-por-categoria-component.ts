@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../../../Service/producto.service';
 import { Producto } from '../../../../Models/producto.model';
 import { forkJoin, map, of, switchMap } from 'rxjs';
+import { CategoriaService } from '../../../../Service/categoria.service';
+import { Categoria } from '../../../../Models/categoria.model';
 
 @Component({
   selector: 'app-productos-por-categoria-component',
@@ -14,12 +16,11 @@ import { forkJoin, map, of, switchMap } from 'rxjs';
 export class ProductosPorCategoriaComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productoService = inject(ProductoService);
-
   categoriaId!: number;
   productos = signal<Producto[]>([]);
   loading = signal(true);
-
   ngOnInit(): void {
+
     this.route.paramMap
       .pipe(
         switchMap(params => {
@@ -31,11 +32,9 @@ export class ProductosPorCategoriaComponent implements OnInit {
         }),
         switchMap(productos => {
           if (productos.length === 0) return of([]);
-          // Obtenemos las imágenes de cada producto
           const observables = productos.map(producto =>
             this.productoService.listarImagenesPorProductoBackend(producto.idproducto).pipe(
               map((rutasRelativas: string[]) => {
-                // Usamos tu método del service que construye URLs absolutas
                 const imagenes = this.productoService.listarImagenesProducto(producto.idproducto, rutasRelativas);
                 return {
                   ...producto,
@@ -60,4 +59,5 @@ export class ProductosPorCategoriaComponent implements OnInit {
         }
       });
   }
+
 }

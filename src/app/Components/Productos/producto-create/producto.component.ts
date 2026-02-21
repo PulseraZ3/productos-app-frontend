@@ -8,11 +8,12 @@ import { UsuarioService } from '../../../Service/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { AuthService } from '../../../Service/auth';
 
 @Component({
     selector: 'app-producto',
     templateUrl: './producto-component.html',
-    styleUrl:'./menu-component.css',
+    styleUrl: './menu-component.css',
     imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink]
 })
 export class ProductoComponent implements OnInit {
@@ -31,12 +32,11 @@ export class ProductoComponent implements OnInit {
 
 
     categorias: Categoria[] = [];
-    usuarios: Usuario[] = [];
 
     constructor(
         private productoService: ProductoService,
         private categoriaService: CategoriaService,
-        private usuarioService: UsuarioService
+        private authService: AuthService
     ) { }
 
     ngOnInit(): void {
@@ -44,16 +44,17 @@ export class ProductoComponent implements OnInit {
             this.categorias = data;
         });
 
-        this.usuarioService.listarUsuarios().subscribe((data) => {
-            this.usuarios = data;
-        });
+        const idUsuario = this.authService.getIdUsuario();
+
+        if (idUsuario) {
+            this.producto.id_usuario = idUsuario;
+        }
     }
 
     guardarProducto() {
-        console.log("DEBUG PRODUCTO:", this.producto); 
-        
-        if (!this.producto.idcategoria || this.producto.idcategoria === 0 ||
-            !this.producto.id_usuario || this.producto.id_usuario === 0) {
+        console.log("DEBUG PRODUCTO:", this.producto);
+        console.log("ID USUARIO:", this.authService.getIdUsuario());
+        if (!this.producto.idcategoria || this.producto.idcategoria === 0) {
             alert('Debes seleccionar usuario y categoría');
             return;
         }

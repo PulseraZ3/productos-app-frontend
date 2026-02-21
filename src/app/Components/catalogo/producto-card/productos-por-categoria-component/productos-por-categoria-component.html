@@ -1,37 +1,62 @@
 <div class="productos-container p-6">
 
-  <div class="titulo">
+  <div class="titulo text-2xl font-bold mb-6">
     Productos
   </div>
 
   @if (loading()) {
-    <div class="loading">
+    <div class="text-center py-10 text-gray-500">
       Cargando productos...
     </div>
   }
 
-  <div class="grid-productos">
+  <!-- GRID 3x3 REAL -->
+  <div class="grid grid-cols-3 grid-rows-3 gap-6 h-300 w-250">
 
     @for (producto of productos(); track producto.idproducto) {
-      <div class="card-producto">
 
-        <div class="card-body">
-          <h3 class="nombre">
+      <!-- CARD -->
+      <div
+        class="group bg-white border rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col cursor-pointer"
+      >
+
+        <!-- IMAGEN -->
+        <div class="h-40 bg-gray-50 flex items-center justify-center">
+          @if (producto.imagenes && producto.imagenes.length > 0) {
+            <img
+              [src]="producto.imagenes[0]"
+              alt="{{ producto.nombre }}"
+              class="h-full object-contain p-3"
+            />
+          } @else {
+            <span class="text-gray-400 text-sm">Sin imagen</span>
+          }
+        </div>
+
+        <!-- INFO -->
+        <div class="p-2 flex flex-col flex-1">
+
+          <h3 class="font-semibold text-gray-800 line-clamp-2 min-h-[48px]">
             {{ producto.nombre }}
           </h3>
 
-          <p class="descripcion">
+          <p class="text-sm text-gray-500 mt-2 line-clamp-2">
             {{ producto.descripcion }}
           </p>
-        </div>
 
-        <div class="card-footer">
-          <span class="precio">
-            S/ {{ producto.precio }}
-          </span>
-        </div>
+          <!-- PRECIO -->
+          <div class="mt-auto">
+            <span class="text-xl font-bold text-red-600">
+              S/ {{ producto.precio }}
+            </span>
+          </div>
 
+        </div>
+        <button class="p-1 border-[1px]! border-red-700 rounded-2xl! m-4 text-red-700 font-bold transition-all duration-300 group-hover:bg-red-700 group-hover:text-white">
+          AGREGAR
+        </button>
       </div>
+
     }
 
   </div>

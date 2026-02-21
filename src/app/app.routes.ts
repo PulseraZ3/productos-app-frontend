@@ -9,15 +9,13 @@ import { MainLayout } from './Layout/main-layout/main-layout';
 import { LoginComponent } from './Components/login/login'
 import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
 import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
-import { ProductoDetalleComponent } from './Components/Productos/producto-detalle/producto-detalle.component';
 export const routes: Routes = [
   {
-    path: 'menu',
+    path: 'admin',
     component: MainLayout,
     children: [
       { path: 'producto/nuevo', component: ProductoComponent },
       { path: 'productos', component: ProductoComponentListar },
-      { path: 'producto/:id', component: ProductoDetalleComponent },
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
       { path: '', component: MenuComponent },
@@ -33,5 +31,5 @@ export const routes: Routes = [
       {path:'categoria/:id', component: ProductosPorCategoriaComponent}
     ]
   },
-  { path: '**', redirectTo: 'catalogo' } // fallback por si ponen algo no válido
+  { path: '**', redirectTo: 'catalogo' } 
 ];

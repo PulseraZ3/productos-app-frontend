@@ -9,6 +9,7 @@ import { CommonModule, CurrencyPipe } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ChartData, ChartOptions } from "chart.js";
 import { RouterModule } from '@angular/router';
+import { AuthService } from "../../../Service/auth";
 
 @Component({
     selector: "app-producto",
@@ -42,17 +43,19 @@ export class ProductoComponentListar implements OnInit {
     constructor(
         private productoService: ProductoService,
         private categoriaService: CategoriaService,
-        private usuarioService: UsuarioService
+        private usuarioService: UsuarioService,
+        private authService: AuthService
     ) { }
 
     ngOnInit(): void {
+       
         this.productoService.listarProductos().subscribe((data) => {
             this.producto = data;
             this.productoFiltrados = data;
         });
-        this.usuarioService.listarUsuarios().subscribe((data) => {
-            this.usuarios = data;
-        });
+        
+
+        
         this.categoriaService.listarCategorias().subscribe((data) => {
             this.categorias = data;
         });

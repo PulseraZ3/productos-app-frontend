@@ -17,29 +17,42 @@ export class AuthService {
   register(data: RegisterRequest): Observable<any> {
     return this.http.post(`${this.API}/register`, data);
   }
-  logout(){
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('rol');
     localStorage.removeItem('username');
+    localStorage.removeItem('idUsuario');
+
   }
-  login(data:any){
+  login(data: any) {
     return this.http.post(`${this.API}/login`, data);
   }
-  getRoles(){
+  getRoles() {
     return this.http.get<Rol[]>("http://localhost:8080/api/v1/rol");
   }
-  getDistritos(): Observable<GenericResponse<Distrito[]>>{
+  getDistritos(): Observable<GenericResponse<Distrito[]>> {
     return this.http.get<GenericResponse<Distrito[]>>("http://localhost:8080/api/v1/distrito")
   }
-  guardarSesion(usaurio:any){
+  guardarSesion(usaurio: any) {
     localStorage.setItem('token', usaurio.token);
     localStorage.setItem('rol', usaurio.rol);
-    localStorage.setItem('username',usaurio.username);
+    localStorage.setItem('username', usaurio.username);
+    localStorage.setItem('idUsuario', usaurio.idUsuario);
   }
-  getUsername(): string | null{
+  getUsername(): string | null {
     return localStorage.getItem('username');
   }
-    getRol(): string | null{
+  getRol(): string | null {
     return localStorage.getItem('rol');
+  }
+  getIdUsuario(): number {
+
+    const usuarioStorage = localStorage.getItem('usuario');
+
+    if (!usuarioStorage) return 0;
+
+    const usuario = JSON.parse(usuarioStorage);
+
+    return usuario.id_usuario ?? 0;
   }
 }

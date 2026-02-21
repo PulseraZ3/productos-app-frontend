@@ -41,13 +41,6 @@
             <label class="form-label">Fecha de Vencimiento</label>
             <input type="date" class="form-control" [(ngModel)]="producto.fvencimiento" name="fvencimiento" required />
           </div>
-          <div class="col-md-6">
-            <label class="form-label">Usuario</label>
-            <select class="form-select" [(ngModel)]="producto.id_usuario" name="id_usuario" required>
-              <option [ngValue]="0">Seleccione un usuario</option>
-              <option *ngFor="let u of usuarios" [ngValue]="u.idUsuario">{{ u.nombre }}</option>
-            </select>
-          </div>
         </div>
 
         <div class="row mb-3">
