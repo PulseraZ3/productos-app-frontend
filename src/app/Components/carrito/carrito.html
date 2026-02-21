@@ -1,0 +1,22 @@
+<h2 class="text-2xl font-bold mb-4">Mi carrito</h2>
+
+@for (item of cartService.cartItems(); track item.idProducto) {
+
+<div class="flex justify-between border p-3 mb-2">
+
+  <div>
+    <div class="font-bold">{{ item.nombre }}</div>
+    <div>Cantidad: {{ item.cantidad }}</div>
+  </div>
+
+  <div>
+    S/ {{ item.precio * item.cantidad }}
+  </div>
+
+</div>
+{{ cartService.cartItems() | json }}
+}
+
+<div class="text-xl font-bold mt-4">
+  Total: S/ {{ cartService.totalPrecio() }}
+</div>

@@ -10,6 +10,7 @@ import { LoginComponent } from './Components/login/login'
 import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
 import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
 import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
+import { Carrito } from './Components/carrito/carrito';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -33,6 +34,7 @@ export const routes: Routes = [
     component: CatalogoLayout,
     children: [
       { path: '', component: CategoriaList },
+      { path: 'carrito', component: Carrito },
       { path: 'categoria/:id', component: ProductosPorCategoriaComponent }
     ]
   },

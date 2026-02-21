@@ -18,10 +18,7 @@ export class AuthService {
     return this.http.post(`${this.API}/register`, data);
   }
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('rol');
-    localStorage.removeItem('username');
-    localStorage.removeItem('idUsuario');
+    localStorage.clear()
 
   }
   login(data: any) {
@@ -37,7 +34,7 @@ export class AuthService {
     localStorage.setItem('token', usaurio.token);
     localStorage.setItem('rol', usaurio.rol);
     localStorage.setItem('username', usaurio.username);
-    localStorage.setItem('idUsuario', usaurio.idUsuario);
+    localStorage.setItem('id_usuario', usaurio.idUsuario);
   }
   getUsername(): string | null {
     return localStorage.getItem('username');
@@ -46,13 +43,9 @@ export class AuthService {
     return localStorage.getItem('rol');
   }
   getIdUsuario(): number {
-
-    const usuarioStorage = localStorage.getItem('usuario');
-
-    if (!usuarioStorage) return 0;
-
-    const usuario = JSON.parse(usuarioStorage);
-
-    return usuario.id_usuario ?? 0;
+    return Number(localStorage.getItem('id_usuario')) || 0;
+  }
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
   }
 }
