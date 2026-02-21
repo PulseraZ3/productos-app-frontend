@@ -11,31 +11,16 @@ export interface CartItem {
 @Injectable({ providedIn: 'root' })
 export class CartService {
 
-  private items = signal<CartItem[]>([]);
+  private items = signal<CartItem[]>(this.loadFromStorage());
 
-  // lectura pública
   cartItems = this.items.asReadonly();
 
-  // total productos
-  totalItems = computed(() =>
-    this.items().reduce((acc, item) => acc + item.cantidad, 0)
-  );
+  totalItems = computed(() => this.items().reduce((acc, i) => acc + i.cantidad, 0));
+  totalPrecio = computed(() => this.items().reduce((acc, i) => acc + i.precio * i.cantidad, 0));
 
-  // total precio
-  totalPrecio = computed(() =>
-    this.items().reduce(
-      (acc, item) => acc + item.precio * item.cantidad,
-      0
-    )
-  );
-
-  // ✅ agregar producto
   agregarProducto(producto: any) {
-
     const carrito = [...this.items()];
-    const existente = carrito.find(
-      i => i.idProducto === producto.idproducto
-    );
+    const existente = carrito.find(i => i.idProducto === producto.idproducto);
 
     if (existente) {
       existente.cantidad++;
@@ -48,18 +33,27 @@ export class CartService {
         cantidad: 1
       });
     }
-    console.log('Producto enviado:', producto);
+
     this.items.set(carrito);
+    this.saveToStorage();
   }
 
-  // eliminar
   eliminarProducto(idProducto: number) {
-    this.items.set(
-      this.items().filter(i => i.idProducto !== idProducto)
-    );
+    this.items.set(this.items().filter(i => i.idProducto !== idProducto));
+    this.saveToStorage();
   }
 
   limpiarCarrito() {
     this.items.set([]);
+    this.saveToStorage();
+  }
+
+  private saveToStorage() {
+    localStorage.setItem('cart', JSON.stringify(this.items()));
+  }
+
+  private loadFromStorage(): CartItem[] {
+    const data = localStorage.getItem('cart');
+    return data ? JSON.parse(data) : [];
   }
 }

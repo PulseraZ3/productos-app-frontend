@@ -1,22 +1,40 @@
 <h2 class="text-2xl font-bold mb-4">Mi carrito</h2>
 
-@for (item of cartService.cartItems(); track item.idProducto) {
+<div *ngIf="cartService.cartItems().length > 0; else empty">
+  <div *ngFor="let item of cartService.cartItems()" class="flex justify-between border p-3 mb-2 items-center">
+    
+    <!-- Imagen -->
+    <img *ngIf="item.imagen" [src]="item.imagen" alt="{{ item.nombre }}" class="h-16 w-16 object-contain mr-4">
+    
+    <!-- Nombre y cantidad -->
+    <div class="flex-1">
+      <div class="font-bold">{{ item.nombre }}</div>
+      <div>Cantidad: {{ item.cantidad }}</div>
+    </div>
 
-<div class="flex justify-between border p-3 mb-2">
+    <!-- Precio total del item -->
+    <div class="font-semibold">
+      S/ {{ item.precio * item.cantidad }}
+    </div>
 
-  <div>
-    <div class="font-bold">{{ item.nombre }}</div>
-    <div>Cantidad: {{ item.cantidad }}</div>
+    <!-- Botón eliminar -->
+    <button class="ml-4 px-2 py-1 bg-red-600 text-white rounded" (click)="cartService.eliminarProducto(item.idProducto)">
+      Eliminar
+    </button>
+
   </div>
 
-  <div>
-    S/ {{ item.precio * item.cantidad }}
+  <!-- Total general -->
+  <div class="text-xl font-bold mt-4">
+    Total: S/ {{ cartService.totalPrecio() }}
   </div>
 
+  <!-- Botón comprar -->
+  <button class="mt-4 px-4 py-2 bg-green-600 text-white rounded" (click)="comprarTodo()">
+    Comprar todo
+  </button>
 </div>
-{{ cartService.cartItems() | json }}
-}
 
-<div class="text-xl font-bold mt-4">
-  Total: S/ {{ cartService.totalPrecio() }}
-</div>
+<ng-template #empty>
+  <div class="text-gray-500">Tu carrito está vacío</div>
+</ng-template>
