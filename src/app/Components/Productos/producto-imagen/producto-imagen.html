@@ -1,0 +1,21 @@
+<div class="p-4 space-y-4">
+
+  <h2 class="text-xl font-semibold">
+    Subir imágenes del producto
+  </h2>
+
+  <input
+    type="file"
+    multiple
+    accept="image/*"
+    (change)="onFilesSelected($event)"
+    class="border p-2 rounded w-full"
+  />
+
+  <button
+    (click)="subirImagenes()"
+    class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+    Subir imágenes
+  </button>
+
+</div>

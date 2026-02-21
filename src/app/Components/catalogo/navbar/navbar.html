@@ -41,9 +41,15 @@
                         <span class="material-symbols-outlined p-2">
                             person
                         </span>
-                        <span>
+                        @if(username){
+                        <span [routerLink]="['/perfil']">
+                            {{username}}
+                        </span>
+                        }@else {
+                        <span [routerLink]="['/login']" class="cursor-pointer">
                             Mi cuenta
                         </span>
+                        }
                     </div>
                 </div>
             </div>

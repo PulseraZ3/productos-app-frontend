@@ -57,17 +57,36 @@ export class ProductoService {
           this.loading.set(false);
         }
       }),
-      map(data => data?.response ?? []) 
+      map(data => data?.response ?? [])
     );
   }
   listarImagenesProducto(idProducto: number, rutasRelativas: string[]): string[] {
     return rutasRelativas.map(ruta => {
-      const nombreArchivo = ruta.split('/').pop(); 
+      const nombreArchivo = ruta.split('/').pop();
       return `http://localhost:8080/imagenes/${idProducto}/imagenes/${nombreArchivo}`;
     });
   }
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
+  subirImagenesProducto(idProducto: number, archivos: File[]) {
 
+    const formData = new FormData();
+
+    archivos.forEach(file => {
+      formData.append('files', file);
+    });
+
+    const token = localStorage.getItem('token');
+
+    return this.http.post(
+      `${this.apiUrl}/${idProducto}/imagenes`,
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+  }
 }

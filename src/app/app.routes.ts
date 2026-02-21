@@ -9,6 +9,7 @@ import { MainLayout } from './Layout/main-layout/main-layout';
 import { LoginComponent } from './Components/login/login'
 import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
 import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
+import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
 export const routes: Routes = [
   {
     path: 'admin',
@@ -18,6 +19,10 @@ export const routes: Routes = [
       { path: 'productos', component: ProductoComponentListar },
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
+      {
+        path: 'producto/:id/imagenes',
+        component: ProductoImagen
+      },
       { path: '', component: MenuComponent },
     ]
   },
@@ -26,10 +31,10 @@ export const routes: Routes = [
   {
     path: "catalogo",
     component: CatalogoLayout,
-    children:[ 
-      {path:'', component:CategoriaList},
-      {path:'categoria/:id', component: ProductosPorCategoriaComponent}
+    children: [
+      { path: '', component: CategoriaList },
+      { path: 'categoria/:id', component: ProductosPorCategoriaComponent }
     ]
   },
-  { path: '**', redirectTo: 'catalogo' } 
+  { path: '**', redirectTo: 'catalogo' }
 ];
