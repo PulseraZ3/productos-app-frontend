@@ -1,8 +1,67 @@
-<nav class="bg-[#cc292e]">
-    <div>
-        <div class="" name="carrusel anuncios">
+<nav class="bg-[#004d40] shadow-md">
+
+  <div class="py-3 px-6">
+    <div class="flex items-center justify-between gap-6">
+
+      <!-- Logo + Menú -->
+      <div class="flex items-center gap-6">
+
+        <!-- Nuevo logo -->
+        <img 
+          src="/23.png"
+          alt="Logo"
+          class="h-10 w-10 object-contain cursor-pointer hover:scale-105 transition duration-200"
+          [routerLink]="['/catalogo']">
+
+        <!-- Botón menú -->
+        <button
+          (click)="toggleMenu()"
+          class="flex items-center gap-2
+                 text-white
+                 px-4 py-2
+                 rounded-lg
+                 hover:bg-[#009688]
+                 transition duration-200">
+
+          <span class="material-symbols-outlined">
+            menu
+          </span>
+
+          <span>Menú</span>
+
+        </button>
+
+      </div>
+
+      <!-- Buscador -->
+      <div class="w-full max-w-xl">
+        <div class="flex items-center bg-white rounded-full px-4 py-2 shadow-sm">
+
+          <input type="search"
+                 class="w-full outline-none text-gray-600"
+                 placeholder="¿Qué estás buscando?">
+
+          <span class="material-symbols-outlined text-[#009688] cursor-pointer">
+            search
+          </span>
 
         </div>
+<<<<<<< HEAD
+      </div>
+
+      <!-- Acciones -->
+      <div class="flex items-center gap-8 text-white font-medium">
+
+        <!-- Carrito -->
+        <div class="flex items-center gap-2 cursor-pointer
+                    hover:text-[#80cbc4] transition">
+
+          <span class="material-symbols-outlined">
+            shopping_bag
+          </span>
+
+          <span>Mi carrito</span>
+=======
         <div class="font-sans py-2 px-4">
             <div class="flex gap-5 justify-between">
                 <div class="flex gap-3">
@@ -53,34 +112,22 @@
                     </div>
                 </div>
             </div>
+>>>>>>> fa4edcd2da2dce407c797fc6997d5942c7673c9b
         </div>
+
+        <!-- Cuenta -->
+        <div class="flex items-center gap-2 cursor-pointer
+                    hover:text-[#80cbc4] transition">
+
+          <span class="material-symbols-outlined">
+            person
+          </span>
+
+          <span>Mi cuenta</span>
+        </div>
+
+      </div>
+
     </div>
+  </div>
 </nav>
-@if (menuOpen()) {
-<div (click)="closeMenu()" class="fixed inset-0 bg-black/40 z-40"></div>
-}
-
-<div class="fixed top-14 left-0 h-[calc(100vh)]
-         w-72 bg-white shadow-xl z-50
-         transform transition-transform duration-300" [class.-translate-x-full]="!menuOpen()">
-
-    <div class="p-4 font-semibold border-b">
-        Categorías
-    </div>
-
-    <div class="p-4 space-y-2">
-
-        @if (loading()) {
-        <div>Cargando...</div>
-        }
-
-        @for (categoria of categorias(); track categoria.idcategoria) {
-        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded"
-            [routerLink]="['/catalogo/categoria', categoria.idcategoria]">
-            {{ categoria.nombre }}
-        </div>
-        }
-    </div>
-</div>
-
-<link href="https://fonts.googleapis.com" rel="stylesheet">

@@ -9,6 +9,8 @@ import { MainLayout } from './Layout/main-layout/main-layout';
 import { LoginComponent } from './Components/login/login'
 import { CatalogoLayout } from './Layout/catalogo-layout/catalogo-layout/catalogo-layout';
 import { ProductosPorCategoriaComponent } from './Components/catalogo/producto-card/productos-por-categoria-component/productos-por-categoria-component';
+import { ProductoDetalleComponent } from './Components/Productos/producto-detalle/producto-detalle.component';
+
 import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
 import { Carrito } from './Components/carrito/carrito';
 export const routes: Routes = [
@@ -35,7 +37,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: CategoriaList },
       { path: 'carrito', component: Carrito },
-      { path: 'categoria/:id', component: ProductosPorCategoriaComponent }
+      { path: 'categoria/:id', component: ProductosPorCategoriaComponent },
+      { path:'producto/:id', component: ProductoDetalleComponent } 
     ]
   },
   { path: '**', redirectTo: 'catalogo' }

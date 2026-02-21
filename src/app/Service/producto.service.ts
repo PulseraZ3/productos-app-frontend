@@ -71,6 +71,12 @@ export class ProductoService {
   }
   subirImagenesProducto(idProducto: number, archivos: File[]) {
 
+<<<<<<< HEAD
+  obtenerPorId(id: number) {
+  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+}
+
+=======
     const formData = new FormData();
 
     archivos.forEach(file => {
@@ -89,4 +95,5 @@ export class ProductoService {
       }
     );
   }
+>>>>>>> fa4edcd2da2dce407c797fc6997d5942c7673c9b
 }

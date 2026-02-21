@@ -1,35 +1,56 @@
-<div class="row g-4">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-  <div class="col-12 col-md-6 col-lg-4" *ngFor="let p of productoFiltrados">
+  <div *ngFor="let p of productoFiltrados"
+    class="flex flex-col p-5 rounded-2xl bg-white/70 backdrop-blur-md shadow-sm hover:shadow-lg transition-all duration-300">
 
-    <div class="glass-green h-100">
+    <!-- Header -->
+    <div class="flex justify-between items-start mb-3">
+      <h5 class="font-semibold text-gray-800">
+        {{ p.nombre }}
+      </h5>
 
-      <div class="d-flex justify-content-between align-items-start mb-2">
-        <h5 class="fw-bold mb-0">{{ p.nombre }}</h5>
+      <span class="text-xs font-semibold px-3 py-1 rounded-full" [ngClass]="p.estado 
+          ? 'bg-emerald-100 text-emerald-700' 
+          : 'bg-red-100 text-red-600'">
+        {{ p.estado ? 'Activo' : 'Inactivo' }}
+      </span>
+    </div>
 
-        <span class="badge rounded-pill" [ngClass]="p.estado ? 'bg-success' : 'bg-danger'">
-          {{ p.estado ? 'Activo' : 'Inactivo' }}
-        </span>
-      </div>
+    <!-- Descripción -->
+    <p class="text-sm text-gray-500 mb-4">
+      {{ p.descripcion }}
+    </p>
 
-      <p class="small opacity-75 mb-3">
-        {{ p.descripcion }}
-      </p>
+    <!-- Precio y Stock -->
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-lg font-bold text-emerald-600">
+        S/ {{ p.precio }}
+      </span>
 
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <span class="price">S/ {{ p.precio }}</span>
+      <span class="text-sm font-medium" [ngClass]="isStockBajo(p.stock) 
+          ? 'text-red-500' 
+          : 'text-gray-600'">
+        Stock: {{ p.stock }}
+      </span>
+    </div>
 
-        <span [ngClass]="isStockBajo(p.stock) ? 'stock-bajo' : 'stock-ok'">
-          Stock: {{ p.stock }}
-        </span>
-      </div>
+    <!-- Info extra -->
+    <div class="text-sm text-gray-600 space-y-1 mb-4">
+      <div><span class="font-medium">Peso:</span> {{ p.peso }}</div>
+      <div><span class="font-medium">Vence:</span> {{ p.fvencimiento | date:'dd/MM/yyyy' }}</div>
+      <div><span class="font-medium">Categoría:</span> {{ p.idcategoria }}</div>
+    </div>
 
-      <div class="small mb-3">
-        <div><strong>Peso:</strong> {{ p.peso }}</div>
-        <div><strong>Vence:</strong> {{ p.fvencimiento | date:'dd/MM/yyyy' }}</div>
-        <div><strong>Categoría:</strong> {{ p.idcategoria }}</div>
-      </div>
+    <!-- Botones -->
+    <div class="flex justify-between mt-auto pt-4 border-t border-gray-200">
+      <button class="text-sm font-medium text-gray-600 hover:text-gray-900 transition">
+        Editar
+      </button>
 
+      <button class="text-sm font-medium text-amber-600 hover:text-amber-700 transition"
+        (click)="cambiarEstadoProducto(p.idproducto)">
+        Estado
+      </button>
       <div class="d-flex justify-content-between mt-auto">
         <button class="glass-btn">Editar</button>
         <button class="glass-btn warning" (click)="cambiarEstadoProducto(p.idproducto)">
@@ -46,6 +67,10 @@
         </button>
       </div>
 
+      <button class="text-sm font-medium text-sky-600 hover:text-sky-700 transition"
+        [routerLink]="['/catalogo/producto', p.idproducto]">
+        Ver
+      </button>
     </div>
 
   </div>
