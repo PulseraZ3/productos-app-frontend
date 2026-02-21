@@ -1,1 +1,5 @@
 @import "tailwindcss";
+/* styles.css */
+a {
+  @apply no-underline;
+}

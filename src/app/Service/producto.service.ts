@@ -70,4 +70,8 @@ export class ProductoService {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
 
+  obtenerPorId(id: number) {
+  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+}
+
 }

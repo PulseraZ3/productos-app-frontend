@@ -1,105 +1,162 @@
-<div class="layout">
+<div class="flex min-h-screen bg-gradient-to-br from-[#e0f2f1] to-[#b2dfdb]">
 
-  <nav>
-    <div class="container-nav">
+  <!-- SIDEBAR -->
+  <aside
+    class="bg-[#004d40] text-white transition-all duration-300 flex flex-col shadow-2xl"
+    [class.w-20]="isCollapsed"
+    [class.w-64]="!isCollapsed">
 
-      <div>
-        <a class="H1-title">
-          <h1>Admin Page</h1>
-        </a>
+    <!-- Header -->
+    <div class="p-5 flex items-center justify-between">
+      <h1
+        class="text-2xl font-bold tracking-wide transition-all duration-300 overflow-hidden"
+        [class.opacity-0]="isCollapsed"
+        [class.w-0]="isCollapsed"
+        [class.w-auto]="!isCollapsed">
+        Admin
+      </h1>
 
-        <ul>
-
-          <li>
-            <a routerLink="dashProducto">
-              <span class="material-symbols-outlined">monitoring</span>
-              Dashboard
-            </a>
-          </li>
-
-          <li class="acordeon">
-
-            <input type="checkbox" id="listar-abierto">
-
-            <div class="acordeon-header">
-              <span class="material-symbols-outlined">menu</span>
-
-              <label for="listar-abierto" class="acordeon-header-label">
-                Entidades
-                <span class="material-symbols-outlined">chevron_right</span>
-              </label>
-            </div>
-
-            <div class="acordeon-content">
-
-              <a routerLink="productos">
-                <span class="material-symbols-outlined">chevron_right</span>
-                Productos
-              </a>
-
-              <a routerLink="categorias">
-                <span class="material-symbols-outlined">chevron_right</span>
-                Categoría
-              </a>
-
-            </div>
-
-          </li>
-
-          <li>
-            <a>
-              <span class="material-symbols-outlined">settings</span>
-              Opciones
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-      <div class="user-logout">
-        <button (click)="logout()">Cerrar Sesión</button>
-      </div>
-
-    </div>
-  </nav>
-
-  <main>
-
-    <article class="user-info">
-
-      <div class="menu-icon">
-        <span class="material-symbols-outlined menu">
+      <button (click)="toggleSidebar()">
+        <span class="material-symbols-outlined">
           menu
         </span>
-      </div>
+      </button>
+    </div>
 
-      <div class="user">
+    <!-- Navigation -->
+    <nav class="flex-1 px-2 space-y-2 mt-6">
 
-        <span class="material-symbols-outlined notification-icon">
+      <a routerLink="dashProducto"
+         class="flex items-center gap-4 px-4 py-3 rounded-lg
+          text-teal-100
+          hover:text-white
+          hover:bg-[#009688]/30
+          no-underline
+          transition-all duration-200">
+
+        <span class="material-symbols-outlined">monitoring</span>
+
+        <span
+          class="transition-all duration-300 overflow-hidden"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          [class.w-auto]="!isCollapsed">
+          Dashboard
+        </span>
+      </a>
+
+      <a routerLink="productos"
+         class="flex items-center gap-4 px-4 py-3 rounded-lg
+          text-teal-100
+          hover:text-white
+          hover:bg-[#009688]/30
+          no-underline
+          transition-all duration-200">
+
+        <span class="material-symbols-outlined">inventory_2</span>
+
+        <span
+          class="transition-all duration-300 overflow-hidden"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          [class.w-auto]="!isCollapsed">
+          Productos
+        </span>
+      </a>
+
+      <a routerLink="categorias"
+         class="flex items-center gap-4 px-4 py-3 rounded-lg
+          text-teal-100
+          hover:text-white
+          hover:bg-[#009688]/30
+          no-underline
+          transition-all duration-200">
+
+        <span class="material-symbols-outlined">category</span>
+
+        <span
+          class="transition-all duration-300 overflow-hidden"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          [class.w-auto]="!isCollapsed">
+          Categorías
+        </span>
+      </a>
+
+      <a class="flex items-center gap-4 px-4 py-3 rounded-lg
+          text-teal-100
+          hover:text-white
+          hover:bg-[#009688]/30
+          no-underline
+          transition-all duration-200">
+        <span class="material-symbols-outlined">settings</span>
+
+        <span
+          class="transition-all duration-300 overflow-hidden"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          [class.w-auto]="!isCollapsed">
+          Opciones
+        </span>
+      </a>
+
+    </nav>
+
+    <!-- Logout -->
+    <div class="p-4">
+      <button
+        (click)="logout()"
+        class="w-full bg-[#009688] hover:bg-teal-500 py-2 rounded-lg transition text-sm flex items-center justify-center gap-2">
+
+        <span class="material-symbols-outlined">logout</span>
+
+        <span
+          class="transition-all duration-300 overflow-hidden"
+          [class.opacity-0]="isCollapsed"
+          [class.w-0]="isCollapsed"
+          [class.w-auto]="!isCollapsed">
+          Cerrar Sesión
+        </span>
+
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- CONTENIDO -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- TOPBAR -->
+    <header class="bg-white/80 backdrop-blur-md shadow-md px-8 py-4 flex justify-end items-center">
+
+      <div class="flex items-center gap-6">
+
+        <span class="material-symbols-outlined text-[#004d40] cursor-pointer">
           notifications
         </span>
 
-        <div class="user-icon">
-          <span class="material-symbols-outlined">
+        <div class="flex items-center gap-3">
+
+          <span class="material-symbols-outlined text-[#004d40] text-3xl">
             account_circle
           </span>
-        </div>
 
-        <div class="user-name">
-          <span>{{ username }}</span>
-          <span>{{ rol }}</span>
+          <div class="text-right">
+            <p class="font-semibold text-[#004d40]">{{ username }}</p>
+            <p class="text-xs text-gray-500">{{ rol }}</p>
+          </div>
+
         </div>
 
       </div>
 
-    </article>
+    </header>
 
-    <!-- AQUÍ SE CAMBIAN LAS PÁGINAS -->
-    <article class="contenedor-main">
+    <!-- MAIN -->
+    <main class="flex-1 p-10">
       <router-outlet></router-outlet>
-    </article>
+    </main>
 
-  </main>
+  </div>
 
 </div>
