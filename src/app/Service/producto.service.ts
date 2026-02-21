@@ -69,14 +69,11 @@ export class ProductoService {
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
-  subirImagenesProducto(idProducto: number, archivos: File[]) {
-
-<<<<<<< HEAD
-  obtenerPorId(id: number) {
+   obtenerPorId(id: number) {
   return this.http.get<Producto>(`${this.apiUrl}/${id}`);
 }
+  subirImagenesProducto(idProducto: number, archivos: File[]) {
 
-=======
     const formData = new FormData();
 
     archivos.forEach(file => {
@@ -95,5 +92,4 @@ export class ProductoService {
       }
     );
   }
->>>>>>> fa4edcd2da2dce407c797fc6997d5942c7673c9b
 }

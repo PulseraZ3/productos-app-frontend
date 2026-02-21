@@ -51,21 +51,6 @@
         (click)="cambiarEstadoProducto(p.idproducto)">
         Estado
       </button>
-      <div class="d-flex justify-content-between mt-auto">
-        <button class="glass-btn">Editar</button>
-        <button class="glass-btn warning" (click)="cambiarEstadoProducto(p.idproducto)">
-          Estado
-        </button>
-        <button class="glass-btn info" [routerLink]="['/producto', p.idproducto]">
-          Ver
-        </button>
-        <button class="bg-blue-600 text-white px-3 py-1 rounded"
-          [routerLink]="['/admin/producto', p.idproducto, 'imagenes']">
-
-          Subir imágenes
-
-        </button>
-      </div>
 
       <button class="text-sm font-medium text-sky-600 hover:text-sky-700 transition"
         [routerLink]="['/catalogo/producto', p.idproducto]">
