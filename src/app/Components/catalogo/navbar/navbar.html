@@ -5,12 +5,9 @@
 
       <!-- IZQUIERDA -->
       <div class="flex items-center gap-4">
-        <img src="/23.png"
-             [routerLink]="['/catalogo']"
-             class="h-10 cursor-pointer object-contain">
+        <img src="/23.png" [routerLink]="['/catalogo']" class="h-10 cursor-pointer object-contain">
 
-        <button
-          (click)="toggleMenu()"
+        <button (click)="toggleMenu()"
           class="flex items-center gap-2 text-white px-4 py-2 rounded-xl hover:bg-[#00695c] transition">
           <span class="material-symbols-outlined text-xl">menu</span>
           <span>Menú</span>
@@ -20,9 +17,8 @@
       <!-- CENTRO -->
       <div class="flex-1 px-8 max-w-2xl">
         <div class="flex items-center bg-white rounded-full px-4 py-2 shadow-sm">
-          <input type="search"
-                 placeholder="¿Qué estás buscando?"
-                 class="w-full outline-none text-gray-700 bg-transparent">
+          <input type="search" placeholder="¿Qué estás buscando?"
+            class="w-full outline-none text-gray-700 bg-transparent">
           <span class="material-symbols-outlined text-[#009688] cursor-pointer">
             search
           </span>
@@ -41,67 +37,68 @@
           <span class="material-symbols-outlined">person</span>
 
           @if(username){
-            <span [routerLink]="['/perfil']" class="cursor-pointer hover:underline">
-              {{username}}
-            </span>
+          <span [routerLink]="['/perfil']" class="cursor-pointer hover:underline">
+            {{username}}
+          </span>
           } @else {
-            <span [routerLink]="['/login']" class="cursor-pointer hover:underline">
-              Mi cuenta
-            </span>
+          <span [routerLink]="['/login']" class="cursor-pointer hover:underline">
+            Mi cuenta
+          </span>
           }
 
         </div>
         <div class="font-sans py-2 px-4">
-            <div class="flex gap-5 justify-between">
-                <div class="flex gap-3">
-                    <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt=""
-                        [routerLink]="['/catalogo']" class="cursor-pointer">
-                    <button class="flex items-center gap-2 
+          <div class="flex gap-5 justify-between">
+            <div class="flex gap-3">
+              <img src="https://plazavea.vteximg.com.br/arquivos/LogoPlazaVea.svg?v=638558150445000000" alt=""
+                [routerLink]="['/catalogo']" class="cursor-pointer">
+              <button class="flex items-center gap-2 
                    text-white 
                    rounded-2xl! 
                    px-3
                    py-1
                    hover:bg-[#9d1e23] 
                    transition-all duration-200 " (click)="toggleMenu()">
-                        <span class="material-symbols-outlined text-2xl">
-                            menu
-                        </span>
-                        <span class="text-base">Menú</span>
-                    </button>
-                </div>
-                <div class="items-center content-center cursor-pointer w-full max-w-xl">
-                    <span class="flex items-center bg-white rounded-2xl! py-1.5  px-2 w-full">
-                        <input type="search" class="pl-2  text-gray-400 w-full focus:outline-0" id=""
-                            placeholder="¿Qué estas buscando?">
-                        <span class="material-symbols-outlined ">
-                            search
-                        </span>
-                    </span>
-                </div>
-                <div class="flex items-center content-center gap-5 text-white">
-                    <div class="flex items-center ">
-                        <span class="material-symbols-outlined p-2">
-                            shopping_bag
-                        </span>
-                        <span [routerLink]="['/catalogo/carrito']">Mi carrito</span>
-                    </div>
-                    <div class="flex items-center">
-                        <span class="material-symbols-outlined p-2">
-                            person
-                        </span>
-                        @if(username){
-                        <span [routerLink]="['/perfil']">
-                            {{username}}
-                        </span>
-                        }@else {
-                        <span [routerLink]="['/login']" class="cursor-pointer">
-                            Mi cuenta
-                        </span>
-                        }
-                    </div>
-                </div>
+                <span class="material-symbols-outlined text-2xl">
+                  menu
+                </span>
+                <span class="text-base">Menú</span>
+              </button>
             </div>
+            <div class="items-center content-center cursor-pointer w-full max-w-xl">
+              <span class="flex items-center bg-white rounded-2xl! py-1.5  px-2 w-full">
+                <input type="search" class="pl-2  text-gray-400 w-full focus:outline-0" id=""
+                  placeholder="¿Qué estas buscando?">
+                <span class="material-symbols-outlined ">
+                  search
+                </span>
+              </span>
+            </div>
+            <div class="flex items-center content-center gap-5 text-white">
+              <div class="flex items-center ">
+                <span class="material-symbols-outlined p-2">
+                  shopping_bag
+                </span>
+                <span [routerLink]="['/catalogo/carrito']">Mi carrito</span>
+              </div>
+              <div class="flex items-center">
+                <span class="material-symbols-outlined p-2">
+                  person
+                </span>
+                @if(username){
+                <span [routerLink]="['/perfil']">
+                  {{username}}
+                </span>
+                }@else {
+                <span [routerLink]="['/login']" class="cursor-pointer">
+                  Mi cuenta
+                </span>
+                }
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </nav>

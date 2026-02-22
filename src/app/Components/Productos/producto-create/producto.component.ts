@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../../../Models/producto.model';
 import { Categoria } from '../../../Models/categoria.model';
-import { Usuario } from '../../../Models/usuario.model';
 import { ProductoService } from '../../../Service/producto.service';
 import { CategoriaService } from '../../../Service/categoria.service';
 import { UsuarioService } from '../../../Service/usuario.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../Service/auth';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -16,7 +14,7 @@ import { Location } from '@angular/common';
     selector: 'app-producto',
     templateUrl: './producto-component.html',
     styleUrl: './menu-component.css',
-    imports: [CommonModule, ReactiveFormsModule, FormsModule, RouterLink]
+    imports: [CommonModule, ReactiveFormsModule, FormsModule]
 })
 export class ProductoComponent implements OnInit {
     producto: Producto = {
