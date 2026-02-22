@@ -1,0 +1,21 @@
+<swiper-container
+  #swiper
+  class="mi-swiper"
+  init="false"
+  slides-per-view="1"
+  space-between="20"
+  navigation="true"
+  pagination="true"
+  loop="true"
+  autoplay-delay="3000"
+>
+
+  <swiper-slide *ngFor="let producto of productos">
+    <div class="card">
+      <a [href]="producto.url">
+        <img [src]="producto.imagen" alt="">
+      </a>
+    </div>
+  </swiper-slide>
+
+</swiper-container>

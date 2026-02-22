@@ -5,6 +5,8 @@ import { Producto } from '../../../../Models/producto.model';
 import { forkJoin, map, of, switchMap } from 'rxjs';
 
 import { CartService } from '../../../../Service/cart';
+import { Categoria } from '../../../../Models/categoria.model';
+import { CategoriaService } from '../../../../Service/categoria.service';
 
 @Component({
   selector: 'app-productos-por-categoria-component',
@@ -16,10 +18,12 @@ import { CartService } from '../../../../Service/cart';
 export class ProductosPorCategoriaComponent implements OnInit {
   private route = inject(ActivatedRoute);
   private productoService = inject(ProductoService);
+  private categoriaService = inject(CategoriaService);
   constructor(public cartService: CartService) { }
   categoriaId!: number;
   productos = signal<Producto[]>([]);
   loading = signal(true);
+  categoria = signal<Categoria | null>(null);
   ngOnInit(): void {
 
     this.route.paramMap
@@ -29,6 +33,9 @@ export class ProductosPorCategoriaComponent implements OnInit {
           if (!id) return of([]);
           this.categoriaId = Number(id);
           this.loading.set(true);
+          this.categoriaService
+            .obtenerCategoriaPorId(this.categoriaId)
+            .subscribe(cat => this.categoria.set(cat));
           return this.productoService.listarPorCategorias(this.categoriaId);
         }),
         switchMap(productos => {

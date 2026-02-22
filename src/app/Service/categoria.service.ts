@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Categoria } from '../Models/categoria.model';
 import { Producto } from '../Models/producto.model';
+import { GenericResponse } from '../Models/generic-response.model';
 interface CategoriaResponse {
   response: Categoria[];
 }
@@ -31,5 +32,12 @@ export class CategoriaService {
       categoria.idcategoria.toString().includes(termino)
     );
   }
-  
+  obtenerCategoriaPorId(id: number): Observable<Categoria> {
+    return this.http
+      .get<GenericResponse<Categoria>>(`${this.apiUrl}/${id}`)
+      .pipe(
+        map(res => res.response)
+      );
+  }
+
 }

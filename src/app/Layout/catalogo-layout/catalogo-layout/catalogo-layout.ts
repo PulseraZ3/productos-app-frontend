@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { Navbar } from "../../../Components/catalogo/navbar/navbar";
+import { Footer } from "../../../Components/catalogo/footer/footer";
 
 @Component({
   selector: 'app-catalogo-layout',
-  imports: [RouterModule, Navbar],
+  imports: [RouterModule, Navbar, Footer],
   templateUrl: './catalogo-layout.html',
-  styleUrl: './catalogo-layout.css'
+  styleUrl: './catalogo-layout.css',
 })
 export class CatalogoLayout {
 

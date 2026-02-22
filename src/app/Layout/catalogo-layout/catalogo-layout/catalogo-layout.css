@@ -1,0 +1,11 @@
+/* ocupa toda la pantalla */
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* el contenido crece */
+.contenido {
+  flex: 1;
+}
