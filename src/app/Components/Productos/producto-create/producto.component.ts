@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../../Service/auth';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-producto',
@@ -27,16 +29,22 @@ export class ProductoComponent implements OnInit {
         fvencimiento: '',
         estado: true,
         idcategoria: 0,
-        id_usuario: 0
+        id_usuario: 0,
     };
 
 
     categorias: Categoria[] = [];
 
+    modoEdicion = false;
+    idProducto!: number;
+
     constructor(
         private productoService: ProductoService,
         private categoriaService: CategoriaService,
+        private route: ActivatedRoute,
+        private location: Location,
         private authService: AuthService
+
     ) { }
 
     ngOnInit(): void {
@@ -49,6 +57,17 @@ export class ProductoComponent implements OnInit {
         if (idUsuario) {
             this.producto.id_usuario = idUsuario;
         }
+        this.route.params.subscribe(params => {
+            if (params['id']) {
+                this.modoEdicion = true;
+                this.idProducto = +params['id'];
+                this.cargarProducto(this.idProducto);
+            }
+        });
+    }
+
+    cancelar() {
+        this.location.back();
     }
 
     guardarProducto() {
@@ -59,14 +78,40 @@ export class ProductoComponent implements OnInit {
             return;
         }
 
-        this.productoService.crearProducto(this.producto).subscribe({
-            next: (res) => {
-                console.log('Producto registrado:', res);
-                alert('Producto registrado con éxito!');
+        if (this.modoEdicion) {
+            this.productoService.actualizarProducto(this.idProducto, this.producto).subscribe({
+                next: (res) => {
+                    console.log('Producto actualizado:', res);
+                    alert('Producto actualizado con éxito!');
+                },
+                error: (err) => {
+                    console.error('Error al actualizar producto:', err);
+                    alert('Error al actualizar el producto');
+                }
+            });
+        }
+
+        else {
+            this.productoService.crearProducto(this.producto).subscribe({
+                next: (res) => {
+                    console.log('Producto registrado:', res);
+                    alert('Producto registrado con éxito!');
+                },
+                error: (err) => {
+                    console.error('Error al registrar producto:', err);
+                    alert('Error al registrar el producto');
+                }
+            });
+        }
+    }
+
+    cargarProducto(id: number) {
+        this.productoService.obtenerPorId(id).subscribe({
+            next: (data) => {
+                this.producto = data;
             },
             error: (err) => {
-                console.error('Error al registrar producto:', err);
-                alert('Error al registrar el producto');
+                console.error('Error al cargar producto:', err);
             }
         });
     }

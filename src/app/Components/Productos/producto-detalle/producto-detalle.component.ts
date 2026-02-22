@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../../Service/producto.service';
 import { Producto } from "../../../Models/producto.model";
 import { CommonModule } from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-producto-detalle',
@@ -17,15 +18,18 @@ export class ProductoDetalleComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private location: Location
   ) {}
 
   ngOnInit(): void {
+  const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-
-    //this.productoService.obtenerPorId(id).subscribe(data => {
-      //this.producto = data;
-   // });
-  }
+  this.productoService.obtenerPorId(id).subscribe((data: Producto) => {
+    this.producto = data;
+  });
+}
+volver() {
+  this.location.back();
+}
 }

@@ -1,40 +1,79 @@
-<h2 class="text-2xl font-bold mb-4">Mi carrito</h2>
+<div class="max-w-4xl mx-auto p-6">
 
-<div *ngIf="cartService.cartItems().length > 0; else empty">
-  <div *ngFor="let item of cartService.cartItems()" class="flex justify-between border p-3 mb-2 items-center">
-    
-    <!-- Imagen -->
-    <img *ngIf="item.imagen" [src]="item.imagen" alt="{{ item.nombre }}" class="h-16 w-16 object-contain mr-4">
-    
-    <!-- Nombre y cantidad -->
-    <div class="flex-1">
-      <div class="font-bold">{{ item.nombre }}</div>
-      <div>Cantidad: {{ item.cantidad }}</div>
+  <!-- Título -->
+  <h2 class="text-3xl font-bold mb-6 text-gray-800">🛒 Mi Carrito</h2>
+
+  <div *ngIf="cartService.cartItems().length > 0; else empty" 
+       class="bg-white shadow-xl rounded-2xl p-6">
+
+    <!-- Lista de productos -->
+    <div *ngFor="let item of cartService.cartItems()" 
+         class="flex items-center justify-between border-b last:border-b-0 py-4 hover:bg-gray-50 transition duration-300 rounded-lg">
+
+      <!-- Imagen -->
+      <div class="flex items-center gap-4">
+        <div class="bg-gray-100 p-3 rounded-xl">
+          <img *ngIf="item.imagen" 
+               [src]="item.imagen" 
+               alt="{{ item.nombre }}" 
+               class="h-20 w-20 object-contain">
+        </div>
+
+        <!-- Info -->
+        <div>
+          <div class="font-semibold text-lg text-gray-800">
+            {{ item.nombre }}
+          </div>
+          <div class="text-sm text-gray-500">
+            Cantidad: {{ item.cantidad }}
+          </div>
+          <div class="text-sm text-gray-500">
+            Precio unitario: S/ {{ item.precio }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Precio + botón -->
+      <div class="flex items-center gap-6">
+        <div class="text-lg font-bold text-green-600">
+          S/ {{ item.precio * item.cantidad }}
+        </div>
+
+        <button
+          class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow-md transition duration-300"
+          (click)="cartService.eliminarProducto(item.idProducto)">
+          ✕
+        </button>
+      </div>
     </div>
 
-    <!-- Precio total del item -->
-    <div class="font-semibold">
-      S/ {{ item.precio * item.cantidad }}
+    <!-- Resumen -->
+    <div class="mt-6 pt-6 border-t flex justify-between items-center">
+      <div class="text-2xl font-bold text-gray-800">
+        Total:
+      </div>
+      <div class="text-3xl font-extrabold text-green-600">
+        S/ {{ cartService.totalPrecio() }}
+      </div>
     </div>
 
-    <!-- Botón eliminar -->
-    <button class="ml-4 px-2 py-1 bg-red-600 text-white rounded" (click)="cartService.eliminarProducto(item.idProducto)">
-      Eliminar
-    </button>
+    <!-- Botón comprar -->
+    <div class="mt-6 text-right">
+      <button
+        class="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-xl shadow-lg transition duration-300 transform hover:scale-105"
+        (click)="comprarTodo()">
+        Comprar todo
+      </button>
+    </div>
 
   </div>
 
-  <!-- Total general -->
-  <div class="text-xl font-bold mt-4">
-    Total: S/ {{ cartService.totalPrecio() }}
-  </div>
+  <!-- Carrito vacío -->
+  <ng-template #empty>
+    <div class="bg-white shadow-lg rounded-2xl p-10 text-center">
+      <div class="text-6xl mb-4">🛒</div>
+      <p class="text-gray-500 text-lg">Tu carrito está vacío</p>
+    </div>
+  </ng-template>
 
-  <!-- Botón comprar -->
-  <button class="mt-4 px-4 py-2 bg-green-600 text-white rounded" (click)="comprarTodo()">
-    Comprar todo
-  </button>
 </div>
-
-<ng-template #empty>
-  <div class="text-gray-500">Tu carrito está vacío</div>
-</ng-template>

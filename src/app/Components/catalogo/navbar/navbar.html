@@ -1,6 +1,54 @@
-<nav class="bg-[#cc292e]">
-    <div>
-        <div class="" name="carrusel anuncios">
+<nav class="bg-[#004d40] shadow-md">
+  <div class="max-w-7xl mx-auto px-6">
+
+    <div class="flex items-center justify-between h-16">
+
+      <!-- IZQUIERDA -->
+      <div class="flex items-center gap-4">
+        <img src="/23.png"
+             [routerLink]="['/catalogo']"
+             class="h-10 cursor-pointer object-contain">
+
+        <button
+          (click)="toggleMenu()"
+          class="flex items-center gap-2 text-white px-4 py-2 rounded-xl hover:bg-[#00695c] transition">
+          <span class="material-symbols-outlined text-xl">menu</span>
+          <span>Menú</span>
+        </button>
+      </div>
+
+      <!-- CENTRO -->
+      <div class="flex-1 px-8 max-w-2xl">
+        <div class="flex items-center bg-white rounded-full px-4 py-2 shadow-sm">
+          <input type="search"
+                 placeholder="¿Qué estás buscando?"
+                 class="w-full outline-none text-gray-700 bg-transparent">
+          <span class="material-symbols-outlined text-[#009688] cursor-pointer">
+            search
+          </span>
+        </div>
+      </div>
+
+      <!-- DERECHA -->
+      <div class="flex items-center gap-6 text-white">
+
+        <div class="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition">
+          <span class="material-symbols-outlined">shopping_bag</span>
+          <span>Mi carrito</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined">person</span>
+
+          @if(username){
+            <span [routerLink]="['/perfil']" class="cursor-pointer hover:underline">
+              {{username}}
+            </span>
+          } @else {
+            <span [routerLink]="['/login']" class="cursor-pointer hover:underline">
+              Mi cuenta
+            </span>
+          }
 
         </div>
         <div class="font-sans py-2 px-4">
@@ -55,32 +103,5 @@
             </div>
         </div>
     </div>
+  </div>
 </nav>
-@if (menuOpen()) {
-<div (click)="closeMenu()" class="fixed inset-0 bg-black/40 z-40"></div>
-}
-
-<div class="fixed top-14 left-0 h-[calc(100vh)]
-         w-72 bg-white shadow-xl z-50
-         transform transition-transform duration-300" [class.-translate-x-full]="!menuOpen()">
-
-    <div class="p-4 font-semibold border-b">
-        Categorías
-    </div>
-
-    <div class="p-4 space-y-2">
-
-        @if (loading()) {
-        <div>Cargando...</div>
-        }
-
-        @for (categoria of categorias(); track categoria.idcategoria) {
-        <div class="cursor-pointer hover:bg-gray-100 p-2 rounded"
-            [routerLink]="['/catalogo/categoria', categoria.idcategoria]">
-            {{ categoria.nombre }}
-        </div>
-        }
-    </div>
-</div>
-
-<link href="https://fonts.googleapis.com" rel="stylesheet">

@@ -23,4 +23,10 @@ export class MainLayout {
     this.authService.logout();
     this.router.navigate(['/login'])
   }
+
+  isCollapsed = false;
+
+toggleSidebar() {
+  this.isCollapsed = !this.isCollapsed;
+}
 }
