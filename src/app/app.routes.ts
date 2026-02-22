@@ -19,9 +19,11 @@ export const routes: Routes = [
     component: MainLayout,
     children: [
       { path: 'producto/nuevo', component: ProductoComponent },
+      { path: 'producto/editar/:id', component: ProductoComponent },
       { path: 'productos', component: ProductoComponentListar },
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
+      { path:'producto/:id', component: ProductoDetalleComponent } ,
       {
         path: 'producto/:id/imagenes',
         component: ProductoImagen
@@ -37,8 +39,8 @@ export const routes: Routes = [
     children: [
       { path: '', component: CategoriaList },
       { path: 'carrito', component: Carrito },
-      { path: 'categoria/:id', component: ProductosPorCategoriaComponent },
-      { path:'producto/:id', component: ProductoDetalleComponent } 
+      { path: 'categoria/:id', component: ProductosPorCategoriaComponent }
+      
     ]
   },
   { path: '**', redirectTo: 'catalogo' }

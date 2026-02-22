@@ -5,6 +5,7 @@ import { Producto } from '../Models/producto.model';
 import { ProductoCategoria } from '../Models/productoCategoria.model';
 import { ProductoUsuario } from '../Models/productoUsuario.model';
 import { GenericResponse } from '../Models/generic-response.model';
+import { HttpHeaders } from '@angular/common/http';
 
 interface ProductoResponse {
   response: Producto[];
@@ -21,6 +22,16 @@ export class ProductoService {
   crearProducto(producto: Producto): Observable<Producto> {
     return this.http.post<Producto>(this.apiUrl, producto);
   }
+
+  actualizarProducto(id: number, producto: Producto) {
+  const token = localStorage.getItem('token');
+
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this.http.put(`${this.apiUrl}/${id}`, producto, { headers });
+}
 
   listarProductos(): Observable<Producto[]> {
     return this.http.get<ProductoResponse>(this.apiUrl).pipe(map(res => res.response));
@@ -69,8 +80,8 @@ export class ProductoService {
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
-   obtenerPorId(id: number) {
-  return this.http.get<Producto>(`${this.apiUrl}/${id}`);
+  obtenerPorId(id: number) {
+  return this.http.get<Producto>(`http://localhost:8080/api/productos/detalle/${id}`);
 }
   subirImagenesProducto(idProducto: number, archivos: File[]) {
 

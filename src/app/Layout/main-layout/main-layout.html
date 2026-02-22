@@ -1,18 +1,13 @@
 <div class="flex min-h-screen bg-gradient-to-br from-[#e0f2f1] to-[#b2dfdb]">
 
   <!-- SIDEBAR -->
-  <aside
-    class="bg-[#004d40] text-white transition-all duration-300 flex flex-col shadow-2xl"
-    [class.w-20]="isCollapsed"
+  <aside class="bg-[#004d40] text-white transition-all duration-300 flex flex-col shadow-2xl" [class.w-20]="isCollapsed"
     [class.w-64]="!isCollapsed">
 
     <!-- Header -->
     <div class="p-5 flex items-center justify-between">
-      <h1
-        class="text-2xl font-bold tracking-wide transition-all duration-300 overflow-hidden"
-        [class.opacity-0]="isCollapsed"
-        [class.w-0]="isCollapsed"
-        [class.w-auto]="!isCollapsed">
+      <h1 class="text-2xl font-bold tracking-wide transition-all duration-300 overflow-hidden"
+        [class.opacity-0]="isCollapsed" [class.w-0]="isCollapsed" [class.w-auto]="!isCollapsed">
         Admin
       </h1>
 
@@ -24,100 +19,119 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="flex-1 px-2 space-y-2 mt-6">
+    <nav class="flex-1 px-4 space-y-3 mt-6">
 
-      <a routerLink="dashProducto"
-         class="flex items-center gap-4 px-4 py-3 rounded-lg
-          text-teal-100
-          hover:text-white
-          hover:bg-[#009688]/30
-          no-underline
-          transition-all duration-200">
+      <a routerLink="dashProducto" routerLinkActive="!bg-white/10 !text-white ring-1 ring-emerald-400/30" class="relative group flex items-center px-4 py-3 rounded-2xl
+            text-slate-50 no-underline
+            transition-all duration-300 ease-in-out
+            hover:bg-white/10 hover:text-white
+            active:scale-95" [class.justify-center]="isCollapsed" [class.gap-4]="!isCollapsed">
 
-        <span class="material-symbols-outlined">monitoring</span>
+        <span class="material-symbols-outlined relative z-10 
+                 text-emerald-300 group-hover:text-white
+                 group-hover:drop-shadow-[0_0_8px_rgba(52,211,153,0.8)] 
+                 transition-all duration-300 shrink-0">
+          monitoring
+        </span>
 
         <span
-          class="transition-all duration-300 overflow-hidden"
-          [class.opacity-0]="isCollapsed"
-          [class.w-0]="isCollapsed"
-          [class.w-auto]="!isCollapsed">
+          class="relative z-10 font-medium whitespace-nowrap overflow-hidden transition-all duration-300 ease-in-out"
+          [class.max-w-0]="isCollapsed" [class.opacity-0]="isCollapsed" [class.max-w-[200px]]="!isCollapsed"
+          [class.opacity-100]="!isCollapsed">
           Dashboard
         </span>
+
+        <div class="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-transparent 
+                opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       </a>
 
-      <a routerLink="productos"
-         class="flex items-center gap-4 px-4 py-3 rounded-lg
-          text-teal-100
-          hover:text-white
-          hover:bg-[#009688]/30
-          no-underline
-          transition-all duration-200">
-
-        <span class="material-symbols-outlined">inventory_2</span>
-
+      <a routerLink="productos" routerLinkActive="bg-white/10 text-white ring-1 ring-emerald-400/30"
+        class="relative group flex items-center px-4 py-3 rounded-2xl text-slate-50 no-underline transition-all duration-300 hover:bg-white/10 hover:text-white active:scale-95"
+        [class.justify-center]="isCollapsed" [class.gap-4]="!isCollapsed">
         <span
-          class="transition-all duration-300 overflow-hidden"
-          [class.opacity-0]="isCollapsed"
-          [class.w-0]="isCollapsed"
-          [class.w-auto]="!isCollapsed">
+          class="material-symbols-outlined relative z-10 text-emerald-300 group-hover:text-white transition-all shrink-0">
+          inventory_2
+        </span>
+        <span class="relative z-10 font-medium whitespace-nowrap overflow-hidden transition-all duration-300"
+          [class.max-w-0]="isCollapsed" [class.opacity-0]="isCollapsed" [class.max-w-[200px]]="!isCollapsed"
+          [class.opacity-100]="!isCollapsed">
           Productos
         </span>
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        </div>
       </a>
 
-      <a routerLink="categorias"
-         class="flex items-center gap-4 px-4 py-3 rounded-lg
-          text-teal-100
-          hover:text-white
-          hover:bg-[#009688]/30
-          no-underline
-          transition-all duration-200">
-
-        <span class="material-symbols-outlined">category</span>
-
+      <a routerLink="categorias" routerLinkActive="bg-white/10 text-white ring-1 ring-emerald-400/30"
+        class="relative group flex items-center px-4 py-3 rounded-2xl text-slate-50 no-underline transition-all duration-300 hover:bg-white/10 hover:text-white active:scale-95"
+        [class.justify-center]="isCollapsed" [class.gap-4]="!isCollapsed">
         <span
-          class="transition-all duration-300 overflow-hidden"
-          [class.opacity-0]="isCollapsed"
-          [class.w-0]="isCollapsed"
-          [class.w-auto]="!isCollapsed">
+          class="material-symbols-outlined relative z-10 text-emerald-300 group-hover:text-white transition-all shrink-0">
+          category
+        </span>
+        <span class="relative z-10 font-medium whitespace-nowrap overflow-hidden transition-all duration-300"
+          [class.max-w-0]="isCollapsed" [class.opacity-0]="isCollapsed" [class.max-w-[200px]]="!isCollapsed"
+          [class.opacity-100]="!isCollapsed">
           Categorías
         </span>
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        </div>
       </a>
 
-      <a class="flex items-center gap-4 px-4 py-3 rounded-lg
-          text-teal-100
-          hover:text-white
-          hover:bg-[#009688]/30
-          no-underline
-          transition-all duration-200">
-        <span class="material-symbols-outlined">settings</span>
-
+      <a class="relative group flex items-center px-4 py-3 rounded-2xl text-slate-50 no-underline transition-all duration-300 hover:bg-white/10 hover:text-white active:scale-95 cursor-pointer"
+        [class.justify-center]="isCollapsed" [class.gap-4]="!isCollapsed">
         <span
-          class="transition-all duration-300 overflow-hidden"
-          [class.opacity-0]="isCollapsed"
-          [class.w-0]="isCollapsed"
-          [class.w-auto]="!isCollapsed">
+          class="material-symbols-outlined relative z-10 text-emerald-300 group-hover:text-white transition-all shrink-0">
+          settings
+        </span>
+        <span class="relative z-10 font-medium whitespace-nowrap overflow-hidden transition-all duration-300"
+          [class.max-w-0]="isCollapsed" [class.opacity-0]="isCollapsed" [class.max-w-[200px]]="!isCollapsed"
+          [class.opacity-100]="!isCollapsed">
           Opciones
         </span>
+        <div
+          class="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+        </div>
       </a>
 
     </nav>
 
+
+
     <!-- Logout -->
     <div class="p-4">
-      <button
-        (click)="logout()"
-        class="w-full bg-[#009688] hover:bg-teal-500 py-2 rounded-lg transition text-sm flex items-center justify-center gap-2">
+      <button (click)="toggleSidebar()" class="relative group flex items-center justify-center w-full px-4 py-3 rounded-2xl
+         bg-gradient-to-r from-emerald-800 via-emerald-700 to-emerald-600
+         text-white font-semibold
+         shadow-[0_8px_25px_rgba(6,95,70,0.6)]
+         border border-emerald-400/40
+         transition-all duration-300 ease-in-out
+         hover:scale-[1.02] hover:shadow-[0_12px_35px_rgba(16,185,129,0.8)]
+         hover:from-emerald-700 hover:to-emerald-500 cursor-pointer overflow-hidden" [class.gap-3]="!isCollapsed"
+        [class.gap-0]="isCollapsed">
 
-        <span class="material-symbols-outlined">logout</span>
-
-        <span
-          class="transition-all duration-300 overflow-hidden"
-          [class.opacity-0]="isCollapsed"
-          [class.w-0]="isCollapsed"
-          [class.w-auto]="!isCollapsed">
-          Cerrar Sesión
+        <span class="absolute inset-0 rounded-2xl
+               bg-emerald-400/20 blur-xl
+               opacity-0 group-hover:opacity-100
+               transition duration-300 pointer-events-none">
         </span>
 
+        <div class="relative z-10 shrink-0 flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+            class="w-6 h-6 text-emerald-200 group-hover:text-white transition-colors duration-300" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 0h-8A1.5 1.5 0 0 0 0 1.5v9A1.5 1.5 0 0 0 1.5 12h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+            <path fill-rule="evenodd"
+              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+          </svg>
+        </div>
+
+        <span class="relative z-10 whitespace-nowrap transition-all duration-300 ease-in-out overflow-hidden"
+          [class.max-w-0]="isCollapsed" [class.opacity-0]="isCollapsed" [class.max-w-[500px]]="!isCollapsed"
+          [class.opacity-100]="!isCollapsed">
+          Cerrar Sesión
+        </span>
       </button>
     </div>
 
