@@ -51,3 +51,31 @@
     </div>
   </div>
 </nav>
+@if (menuOpen()) {
+<div (click)="closeMenu()" class="fixed inset-0 bg-black/40 z-40"></div>
+}
+
+<div class="fixed top-16 left-0 h-[calc(100vh)]
+         w-72 bg-white shadow-xl z-50
+         transform transition-transform duration-300" [class.-translate-x-full]="!menuOpen()">
+
+  <div class="p-4 font-semibold border-b">
+    Categorías
+  </div>
+
+  <div class="p-4 space-y-2">
+
+    @if (loading()) {
+    <div>Cargando...</div>
+    }
+
+    @for (categoria of categorias(); track categoria.idcategoria) {
+    <div class="cursor-pointer hover:bg-gray-100 p-2 rounded"
+      [routerLink]="['/catalogo/categoria', categoria.idcategoria]">
+      {{ categoria.nombre }}
+    </div>
+    }
+  </div>
+</div>
+
+<link href="https://fonts.googleapis.com" rel="stylesheet">
