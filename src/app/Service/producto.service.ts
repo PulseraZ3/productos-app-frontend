@@ -24,14 +24,14 @@ export class ProductoService {
   }
 
   actualizarProducto(id: number, producto: Producto) {
-  const token = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
 
-  const headers = new HttpHeaders({
-    Authorization: `Bearer ${token}`
-  });
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
 
-  return this.http.put(`${this.apiUrl}/${id}`, producto, { headers });
-}
+    return this.http.post(`${this.apiUrl}/${id}`, producto, { headers });
+  }
 
   listarProductos(): Observable<Producto[]> {
     return this.http.get<ProductoResponse>(this.apiUrl).pipe(map(res => res.response));
@@ -80,9 +80,23 @@ export class ProductoService {
   listarImagenesPorProductoBackend(idProducto: number): Observable<string[]> {
     return this.http.get<string[]>(`http://localhost:8080/imagenes/${idProducto}/imagenes`);
   }
+
   obtenerPorId(id: number) {
-  return this.http.get<Producto>(`http://localhost:8080/api/productos/detalle/${id}`);
-}
+
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    return this.http
+      .get<GenericResponse<Producto>>(
+        `${this.apiUrl}/detalle/${id}`,
+        { headers }
+      )
+      .pipe(map(res => res.response));
+  }
+
   subirImagenesProducto(idProducto: number, archivos: File[]) {
 
     const formData = new FormData();
