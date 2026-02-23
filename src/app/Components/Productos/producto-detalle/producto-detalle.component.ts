@@ -20,16 +20,16 @@ export class ProductoDetalleComponent implements OnInit {
     private route: ActivatedRoute,
     private productoService: ProductoService,
     private location: Location
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-  const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-  this.productoService.obtenerPorId(id).subscribe((data: Producto) => {
-    this.producto = data;
-  });
-}
-volver() {
-  this.location.back();
-}
+    this.productoService.obtenerPorId(id).subscribe((data: Producto) => {
+      this.producto = data;
+    });
+  }
+  volver() {
+    this.location.back();
+  }
 }
