@@ -1,8 +1,7 @@
 <div class="flex justify-between items-center mb-6">
   <h2 class="text-2xl font-bold text-gray-800">Lista de Productos</h2>
 
-  <button 
-    class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-xl shadow-md transition"
+  <button class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-xl shadow-md transition"
     [routerLink]="['/admin/producto/nuevo']">
     + Agregar Producto
   </button>
@@ -53,8 +52,7 @@
 
     <!-- Botones -->
     <div class="flex justify-between mt-auto pt-4 border-t border-gray-200">
-      <button 
-        class="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
+      <button class="text-sm font-medium text-gray-600 hover:text-gray-900 transition"
         [routerLink]="['/admin/producto/editar', p.idproducto]">
         Editar
       </button>
@@ -68,6 +66,12 @@
         [routerLink]="['/admin/producto', p.idproducto]">
         Ver
       </button>
+
+      <button class="text-sm font-medium text-purple-600 hover:text-purple-700 transition"
+        [routerLink]="['/admin/producto', p.idproducto, 'imagenes']">
+        Subir Imagen
+      </button>
+
     </div>
 
   </div>
