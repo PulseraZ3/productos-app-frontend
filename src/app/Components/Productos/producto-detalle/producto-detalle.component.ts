@@ -25,7 +25,6 @@ export class ProductoDetalleComponent implements OnInit {
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
-<<<<<<< HEAD
     this.productoService.obtenerPorId(id).subscribe({
       next: (data) => {
         console.log("PRODUCTO:", data);
@@ -34,10 +33,6 @@ export class ProductoDetalleComponent implements OnInit {
       error: (err) => {
         console.error("ERROR:", err);
       }
-=======
-    this.productoService.obtenerPorId(id).subscribe((data: Producto) => {
-      this.producto = data;
->>>>>>> origin/rama3
     });
   }
   volver() {
