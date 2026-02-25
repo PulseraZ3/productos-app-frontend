@@ -15,7 +15,8 @@
     @for (producto of productos(); track producto.idproducto) {
 
     <div
-      class="group bg-white border rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col cursor-pointer">
+      class="group bg-white border rounded-xl shadow-sm hover:shadow-lg transition duration-300 overflow-hidden flex flex-col cursor-pointer"
+      (click)="verDetalle(producto.idproducto)">
 
       <div class="h-40 bg-gray-50 flex items-center justify-center">
         @if (producto.imagenes && producto.imagenes.length > 0) {

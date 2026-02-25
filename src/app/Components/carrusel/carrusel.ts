@@ -44,4 +44,5 @@ export class Carrusel implements AfterViewInit {
 
     swiperEl.initialize();
   }
+  
 }

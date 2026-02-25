@@ -2,8 +2,6 @@
   <div class="max-w-7xl mx-auto px-6">
 
     <div class="flex items-center justify-between h-16">
-
-      <!-- IZQUIERDA -->
       <div class="flex items-center gap-4">
         <img src="/23.png" [routerLink]="['/catalogo']" class="h-10 cursor-pointer object-contain">
 
@@ -14,7 +12,6 @@
         </button>
       </div>
 
-      <!-- CENTRO -->
       <div class="flex-1 px-8 max-w-2xl">
         <div class="flex items-center bg-white rounded-full px-4 py-2 shadow-sm">
           <input type="search" placeholder="¿Qué estás buscando?"
@@ -24,29 +21,42 @@
           </span>
         </div>
       </div>
-
-      <!-- DERECHA -->
       <div class="flex items-center gap-6 text-white">
 
-        <div class="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition">
+        <div class="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition"
+          [routerLink]="['/catalogo/carrito']">
           <span class="material-symbols-outlined">shopping_bag</span>
-          <span [routerLink]="['/catalogo/carrito']">Mi carrito</span>
+          <span>Mi carrito</span>
         </div>
+        <div class="relative flex items-center gap-2 select-none">
 
-        <div class="flex items-center gap-2">
-          <span class="material-symbols-outlined">person</span>
+          <span class="material-symbols-outlined cursor-pointer">person</span>
 
-          @if(username){
-          <span [routerLink]="['/perfil']" class="cursor-pointer hover:underline">
+          <span (click)="toggleUserMenu()" class="cursor-pointer hover:underline">
+            @if(username) {
             {{username}}
-          </span>
-          } @else {
-          <span [routerLink]="['/login']" class="cursor-pointer hover:underline">
+            } @else {
             Mi cuenta
+            }
           </span>
+          @if(userMenuOpen()){
+          <div class="absolute top-full left-0 mt-1 w-48 bg-white text-gray-800 rounded-lg shadow-lg border z-50">
+            @if(username) {
+            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" [routerLink]="['/perfil']">
+              Ver perfil
+            </div>
+            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" (click)="cerrarSesion()">
+              Cerrar sesión
+            </div>
+            } @else {
+            <div class="px-4 py-2 cursor-pointer hover:bg-gray-100" [routerLink]="['/login']">
+              Iniciar sesión
+            </div>
+            }
+          </div>
           }
-
         </div>
+
       </div>
     </div>
   </div>

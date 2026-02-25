@@ -14,17 +14,21 @@ import { ProductoDetalleComponent } from './Components/Productos/producto-detall
 import { ProductoImagen } from './Components/Productos/producto-imagen/producto-imagen';
 import { Carrito } from './Components/carrito/carrito';
 import { Home } from './Components/catalogo/home/home';
+import { authGuard } from './guards/auth-guard';
+import { ProductoDetalle } from './Components/catalogo/producto-detalle/producto-detalle';
 export const routes: Routes = [
   {
     path: 'admin',
     component: MainLayout,
+    canActivate: [authGuard],
+    data: { roles: ['ADMIN'] },
     children: [
       { path: 'producto/nuevo', component: ProductoComponent },
       { path: 'producto/editar/:id', component: ProductoComponent },
       { path: 'productos', component: ProductoComponentListar },
       { path: 'categorias', component: CategoriaList },
       { path: 'dashProducto', component: DashboardComponent },
-      { path:'producto/:id', component: ProductoDetalleComponent } ,
+      { path: 'producto/:id', component: ProductoDetalleComponent },
       {
         path: 'producto/:id/imagenes',
         component: ProductoImagen
@@ -39,9 +43,13 @@ export const routes: Routes = [
     component: CatalogoLayout,
     children: [
       { path: '', component: Home },
-      { path: 'carrito', component: Carrito },
-      { path: 'categoria/:id', component: ProductosPorCategoriaComponent }
-      
+      {
+        path: 'carrito', component: Carrito, canActivate: [authGuard],
+        data: { roles: ['ADMIN', 'CLIENTE'] }
+      },
+      { path: 'categoria/:id', component: ProductosPorCategoriaComponent },
+      { path: 'producto/:id', component: ProductoDetalle}
+
     ]
   },
   { path: '**', redirectTo: 'catalogo' }

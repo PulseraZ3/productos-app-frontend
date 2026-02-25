@@ -19,8 +19,9 @@ export class AuthService {
   }
   logout() {
     localStorage.removeItem('token');
-    
-
+    localStorage.removeItem('username')
+    localStorage.removeItem('id_usuario');
+    localStorage.removeItem('rol');
   }
   login(data: any) {
     return this.http.post(`${this.API}/login`, data);
@@ -31,11 +32,15 @@ export class AuthService {
   getDistritos(): Observable<GenericResponse<Distrito[]>> {
     return this.http.get<GenericResponse<Distrito[]>>("http://localhost:8080/api/v1/distrito")
   }
-  guardarSesion(usaurio: any) {
-    localStorage.setItem('token', usaurio.token);
-    localStorage.setItem('rol', usaurio.rol);
-    localStorage.setItem('username', usaurio.username);
-    localStorage.setItem('id_usuario', usaurio.idUsuario);
+  guardarSesion(usuario: any) {
+
+    const expirationTime = new Date().getTime() + (3600000);
+
+    localStorage.setItem('token', usuario.token);
+    localStorage.setItem('rol', usuario.rol);
+    localStorage.setItem('username', usuario.username);
+    localStorage.setItem('id_usuario', usuario.idUsuario);
+    localStorage.setItem('session_expiration', expirationTime.toString());
   }
   getUsername(): string | null {
     return localStorage.getItem('username');
@@ -48,5 +53,34 @@ export class AuthService {
   }
   isAuthenticated(): boolean {
     return !!localStorage.getItem('token');
+  }
+  //verificar si ya expiro el Session 
+  checkSessionExpiration() {
+
+    const expiration = localStorage.getItem('session_expiration');
+
+    if (!expiration) return;
+
+    const now = new Date().getTime();
+
+    if (now > Number(expiration)) {
+      this.logout();
+    }
+  }
+  startAutoLogout() {
+
+    const expiration = localStorage.getItem('session_expiration');
+    if (!expiration) return;
+
+    const timeLeft = Number(expiration) - new Date().getTime();
+
+    if (timeLeft <= 0) {
+      this.logout();
+      return;
+    }
+
+    setTimeout(() => {
+      this.logout();
+    }, timeLeft);
   }
 }

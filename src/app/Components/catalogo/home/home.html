@@ -1,1 +1,47 @@
 <app-carrusel></app-carrusel>
+<swiper-container
+  #swiper
+  class="mi-swiper"
+  slides-per-view="auto"
+  space-between="20"
+  loop="true"
+  navigation="true"
+  autoplay-delay="3000"
+>
+
+  @for (grupo of productosPorSlide(); track grupo[0].idproducto) {
+    <swiper-slide>
+      <div class="flex gap-4 justify-center">
+        @for (producto of grupo; track producto.idproducto) {
+          <div class="producto-card group bg-white border rounded-xl shadow-sm hover:shadow-lg transition flex flex-col cursor-pointer"
+               (click)="verDetalle(producto.idproducto)">
+            <div class="h-40 bg-gray-50 flex items-center justify-center">
+              @if (producto.imagenes && producto.imagenes.length > 0) {
+                <img [src]="producto.imagenes[0]" [alt]="producto.nombre" class="h-full object-contain p-3" />
+              } @else {
+                <span class="text-gray-400 text-sm">Sin imagen</span>
+              }
+            </div>
+            <div class="p-2 flex flex-col flex-1">
+              <h3 class="font-semibold text-gray-800 line-clamp-2 min-h-[48px] text-xs">
+                {{ producto.nombre.toUpperCase() }}
+              </h3>
+              <p class="text-sm text-gray-500 mt-2 line-clamp-2">
+                {{ producto.descripcion }}
+              </p>
+              <div class="mt-auto">
+                <span class="text-xl font-bold text-red-600">
+                  S/ {{ producto.precio }}
+                </span>
+              </div>
+            </div>
+            <button class="p-1 border border-red-700 rounded-2xl m-4 text-red-700 font-bold transition-all duration-300 group-hover:bg-red-700 group-hover:text-white"
+                    (click)="cartService.agregarProducto(producto); $event.stopPropagation()">
+              AGREGAR
+            </button>
+          </div>
+        }
+      </div>
+    </swiper-slide>
+  }
+</swiper-container>

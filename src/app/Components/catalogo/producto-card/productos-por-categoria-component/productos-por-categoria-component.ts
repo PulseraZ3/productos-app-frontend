@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductoService } from '../../../../Service/producto.service';
 import { Producto } from '../../../../Models/producto.model';
 import { forkJoin, map, of, switchMap } from 'rxjs';
-
+import { Router } from '@angular/router';
 import { CartService } from '../../../../Service/cart';
 import { Categoria } from '../../../../Models/categoria.model';
 import { CategoriaService } from '../../../../Service/categoria.service';
@@ -17,6 +17,7 @@ import { CategoriaService } from '../../../../Service/categoria.service';
 })
 export class ProductosPorCategoriaComponent implements OnInit {
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
   private productoService = inject(ProductoService);
   private categoriaService = inject(CategoriaService);
   constructor(public cartService: CartService) { }
@@ -67,5 +68,7 @@ export class ProductosPorCategoriaComponent implements OnInit {
         }
       });
   }
-
+  verDetalle(id: number) {
+    this.router.navigate(['/catalogo/producto', id]);
+  }
 }

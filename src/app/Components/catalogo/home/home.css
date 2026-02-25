@@ -1,0 +1,44 @@
+.mi-swiper {
+  width: 100%;
+  /* mantiene el Swiper dentro del contenedor */
+  max-width: 800px;
+  /* ajusta según cuántos productos quieres ver */
+  margin: 0 auto;
+  /* centra el Swiper */
+  padding: 20px 0 40px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: flex-start;
+  /* o center */
+  gap: 20px;
+  width: auto;
+  /* importante para slides-per-view: auto */
+}
+
+.producto-card {
+  width: 250px;
+  /* ancho fijo de la tarjeta */
+  flex: 0 0 auto;
+  /* evita que se estire */
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.35s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
+}
+
+.producto-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+

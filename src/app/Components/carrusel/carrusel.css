@@ -22,7 +22,8 @@ swiper-slide {
 
 .card {
     width: 100%;
-    max-width: 90%;
+    max-width: 100%;
+    margin: 20px;
     background: #ffffff;
     border-radius: 14px;
     overflow: hidden;
@@ -40,7 +41,7 @@ swiper-slide {
 
 .card img {
     width: 100%;
-    height: 240px;
+    height: 440px;
     object-fit: cover;
     display: block;
 }
@@ -48,7 +49,9 @@ swiper-slide {
 
 
 .mi-swiper::part(pagination) {
-    bottom: 5px;
+    bottom: 1px;
+    position: absolute;
+    
 }
 
 .swiper-pagination-bullet {

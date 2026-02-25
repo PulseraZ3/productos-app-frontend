@@ -1,37 +1,61 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { CategoriaService } from '../../../Service/categoria.service';
-import { Categoria } from '../../../Models/categoria.model';
-import { RouterLink, RouterModule } from "@angular/router";
-import { Producto } from '../../../Models/producto.model';
+import { Component, inject, signal, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../../Service/auth';
+import { CategoriaService } from '../../../Service/categoria.service';
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
   imports: [RouterLink, RouterModule],
   templateUrl: './navbar.html',
-  standalone: true,
-  styleUrl: './navbar.css'
+  standalone: true
 })
-export class Navbar implements OnInit {
+export class Navbar implements AfterViewInit {
   menuOpen = signal(false);
-  private categoriaService = inject(CategoriaService)
-  private authService = inject(AuthService)
-  categorias = signal<Categoria[]>([]);
-  loading = signal(true);
+  userMenuOpen = signal(false);
   username: string | null = '';
+
+  @ViewChild('userBtn', { read: ElementRef }) userBtn!: ElementRef;
+  dropdownTop = 0;
+  dropdownLeft = 0;
+
+  private authService = inject(AuthService);
+  private categoriaService = inject(CategoriaService);
+
+  categorias = signal<any[]>([]);
+  loading = signal(true);
 
   ngOnInit(): void {
     this.username = this.authService.getUsername();
     this.categoriaService.listarCategorias().subscribe({
-      next: (data) => {
+      next: data => {
         this.categorias.set(data);
         this.loading.set(false);
       },
-      error: () => {
-        this.loading.set(false);
-      }
+      error: () => this.loading.set(false)
     });
   }
+
+  ngAfterViewInit(): void {
+    this.setDropdownPosition();
+  }
+
+  toggleUserMenu() {
+    this.userMenuOpen.set(!this.userMenuOpen());
+    if (this.userMenuOpen()) this.setDropdownPosition();
+  }
+
+  setDropdownPosition() {
+    if (!this.userBtn) return;
+    const rect = this.userBtn.nativeElement.getBoundingClientRect();
+    this.dropdownTop = rect.bottom + window.scrollY; // justo debajo del texto
+    this.dropdownLeft = rect.left + window.scrollX;
+  }
+
+  cerrarSesion() {
+    this.authService.logout();
+    window.location.reload();
+  }
+
   toggleMenu() {
     this.menuOpen.update(v => !v);
   }
@@ -39,5 +63,4 @@ export class Navbar implements OnInit {
   closeMenu() {
     this.menuOpen.set(false);
   }
-
 }
